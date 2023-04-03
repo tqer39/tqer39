@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "arahata.linter-actionlint",
+    "editorconfig.editorconfig",
+    "fnando.linter",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "redhat.vscode-yaml",
+    "aaron-bond.better-comments"
+  ]
+}
