@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3.5.0
 
       - name: Profile 3d contrib
         uses: yoshi389111/github-profile-3d-contrib@0.7.1
