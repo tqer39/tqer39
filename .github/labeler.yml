@@ -1,0 +1,22 @@
+"editorconfig":
+  - ".editorconfig"
+
+"document":
+  - "**/*.md"
+  - "**/*.txt"
+  - "**/*.rst"
+
+"textlint":
+  - "**/.textlint*"
+
+"yamllint":
+  - "**/.yamllint"
+
+"markdownlint":
+  - "**/.markdownlint*.json"
+
+"actionlint":
+  - ".github/workflows/actionlint.yml"
+
+"CODEOWNERS":
+  - "CODEOWNERS"
