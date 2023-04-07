@@ -25,21 +25,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.0
 
+      - name: git switch
+        run: |
+          git switch -c ${{ env.BRANCH_NAME }} > /dev/null 2>&1 || git switch ${{ env.BRANCH_NAME }}
+          git push --set-upstream origin ${{ env.BRANCH_NAME }}
+
       - name: Profile 3d contrib
         uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
-
-      - name: Commit & Push
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: -u
-          message: "generated"
-          author_name: github-actions
-          author_email: github-actions@github.com
-          new_branch: ${{ env.BRANCH_NAME }}
-          fetch: true
 
       - name: git merge
         run: |
