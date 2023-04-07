@@ -13,6 +13,7 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build:
@@ -36,13 +37,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
-      - name: git merge
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          git add -A .
-          git commit -m "generated"
-          git switch main
-          git merge --no-edit ${{ env.BRANCH_NAME }}
-          git push origin main
-          git push --delete origin ${{ env.BRANCH_NAME }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: generated
+          title: "Generated GitHub Profile 3D Contrib"
+          branch: ${{ env.BRANCH_NAME }}
+          base: main
+          delete-branch: true
+          labels: github-profile-3d-contrib
