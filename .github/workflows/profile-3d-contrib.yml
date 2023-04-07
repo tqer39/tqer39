@@ -11,6 +11,9 @@ concurrency:
   group: profile-3d-contrib
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
