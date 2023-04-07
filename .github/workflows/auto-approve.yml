@@ -1,0 +1,27 @@
+---
+name: Auto approve
+
+on:
+  pull_request:
+    types: [review_requested, labeled]
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event.requested_reviewer.login == 'approve-bot'
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NUMBER: ${{ github.event.number }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.0
+
+      - name: Approve
+        run: gh pr review "$NUMBER" --approve
+
+      - name: Remove reviewer
+        run: gh pr edit "$NUMBER" --remove-reviewer "$REVIEWER"
+        env:
+          REVIEWER: ${{ github.event.requested_reviewer.login }}
