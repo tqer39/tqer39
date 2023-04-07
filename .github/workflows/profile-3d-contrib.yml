@@ -38,6 +38,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
+      - name: git commit
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git add -A .
+          git commit -m "generated"
+          git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
