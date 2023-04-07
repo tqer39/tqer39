@@ -54,5 +54,5 @@ jobs:
           title: "Generated GitHub Profile 3D Contrib"
           branch: ${{ env.BRANCH_NAME }}
           base: main
-          delete-branch: true
+          delete-branch: false
           labels: github-profile-3d-contrib
