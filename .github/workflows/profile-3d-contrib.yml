@@ -44,4 +44,5 @@ jobs:
           git commit -m "generated"
           git switch main
           git merge --no-edit ${{ env.BRANCH_NAME }}
+          git push origin main
           git push --delete origin ${{ env.BRANCH_NAME }}
