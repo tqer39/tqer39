@@ -40,7 +40,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKENa }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: generated
           title: "Generated GitHub Profile 3D Contrib"
           branch: ${{ env.BRANCH_NAME }}
