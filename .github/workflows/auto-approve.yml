@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 5
     permissions:
       pull-requests: write
-    if: github.event.label.name == 'auto-approve'
+    if: github.event.label.name == 'auto-approve' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
