@@ -42,8 +42,20 @@ jobs:
           git config user.email github-actions@github.com
           git add -A .
           git commit -m "Update profile-3d-contrib"
+
+      - name: git fetch
+        run: |
           git fetch origin develop
           git switch develop
+
+      - name: git merge
+        run: |
           git merge --no-edit "$BRANCH_NAME"
+
+      - name: git push
+        run: |
           git push -f origin develop
+
+      - name: git branch -d
+        run: |
           git branch -d "$BRANCH_NAME"
