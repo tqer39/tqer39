@@ -26,6 +26,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.0
 
+      - name: git switch
+        run: |
+          git switch -c "$BRANCH_NAME" >/dev/null 2>&1 || git switch "$BRANCH_NAME"
+
       - name: Profile 3d contrib
         uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
@@ -36,14 +40,10 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: generated
-          title: "Generated GitHub Profile 3D Contrib"
-          branch: ${{ env.BRANCH_NAME }}
-          base: main
-          delete-branch: false
-          labels: auto-approve
+          git add -A .
+          git commit -m "Update profile-3d-contrib"
+          git fetch origin develop
+          git switch develop
+          git merge --no-edit "$BRANCH_NAME"
+          git push -f origin develop
+          git branch -d "$BRANCH_NAME"
