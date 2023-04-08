@@ -1,30 +1,18 @@
----
-name: Auto approve
-
+name: Auto Approve
 on:
   pull_request:
-    types: [review_requested, labeled]
-  workflow_dispatch:
-    inputs:
-      pull-request-number:
-        description: "Pull Request Number"
-        type: string
-        required: true
-
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
 jobs:
   approve:
-    name: Approve
+    if: |
+      github.event.pull_request.user.login == github.repository_owner
+      && ! github.event.pull_request.draft
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     permissions:
       pull-requests: write
-    if: github.event.label.name == 'auto-approve' || github.event_name == 'workflow_dispatch'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3.0.0
-
-      - name: Approve
-        uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.PAT_CREATE_PULL_REQUEST }}
-          pull-request-number: ${{ github.event.pull_request.number || github.event.inputs.pull-request-number }}
+      - uses: hmarr/auto-approve-action@v3
