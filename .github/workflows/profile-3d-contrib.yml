@@ -45,7 +45,7 @@ jobs:
 
       - name: git fetch
         run: |
-          git fetch origin develop
+          git fetch
           git switch develop
 
       - name: git merge
