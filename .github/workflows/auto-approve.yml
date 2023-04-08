@@ -8,6 +8,7 @@ on:
     inputs:
       pull-request-number:
         description: "Pull Request Number"
+        type: string
         required: true
 
 jobs:
