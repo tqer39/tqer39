@@ -2,29 +2,19 @@
 name: Auto approve
 
 on:
-  pull_request:
-    types: [review_requested, labeled]
+  pull_request_target:
 
 jobs:
   approve:
     name: Approve
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    if: |
-      (github.event.action == 'labeled' &&
-      github.event.label.name == 'auto-approve')
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NUMBER: ${{ github.event.number }}
-
+    permissions:
+      pull-requests: write
+    if: github.event.label.name == 'auto-approve'
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
 
       - name: Approve
-        run: gh pr review "$NUMBER" --approve
-
-      - name: Remove reviewer
-        run: gh pr edit "$NUMBER" --remove-reviewer "$REVIEWER"
-        env:
-          REVIEWER: ${{ github.event.requested_reviewer.login }}
+        uses: hmarr/auto-approve-action@v3
