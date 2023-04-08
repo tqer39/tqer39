@@ -26,12 +26,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.0
 
-      - name: git switch
-        continue-on-error: true
-        run: |
-          git switch -c ${{ env.BRANCH_NAME }} > /dev/null 2>&1 || git switch ${{ env.BRANCH_NAME }}
-          git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
-
       - name: Profile 3d contrib
         uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
@@ -40,11 +34,8 @@ jobs:
 
       - name: git commit
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          git add -A .
-          git commit -m "generated"
-          # git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
