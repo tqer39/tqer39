@@ -45,8 +45,8 @@ jobs:
 
       - name: git fetch
         run: |
-          git fetch
-          git switch develop
+          git fetch origin main
+          git switch main
 
       - name: git merge
         run: |
@@ -54,7 +54,7 @@ jobs:
 
       - name: git push
         run: |
-          git push -f origin develop
+          git push -f origin main
 
       - name: git branch -d
         run: |
