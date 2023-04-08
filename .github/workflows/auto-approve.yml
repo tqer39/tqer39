@@ -8,7 +8,6 @@ on:
     inputs:
       pull-request-number:
         description: "Pull Request Number"
-        type: string
         required: true
 
 jobs:
@@ -26,5 +25,5 @@ jobs:
       - name: Approve
         uses: hmarr/auto-approve-action@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PAT_CREATE_PULL_REQUEST }}
           pull-request-number: ${{ github.event.pull_request.number || github.event.inputs.pull-request-number }}
