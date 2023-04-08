@@ -36,26 +36,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
-      - name: git commit
+      - name: git push -f origin main
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add -A .
           git commit -m "Update profile-3d-contrib"
-
-      - name: git fetch
-        run: |
           git fetch origin main
           git switch main
-
-      - name: git merge
-        run: |
           git merge --no-edit "$BRANCH_NAME"
-
-      - name: git push
-        run: |
           git push -f origin main
-
-      - name: git branch -d
-        run: |
           git branch -d "$BRANCH_NAME"
