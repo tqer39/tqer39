@@ -7,9 +7,13 @@ on:
 
 jobs:
   approve:
+    name: Approve
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    if: github.event.requested_reviewer.login == 'approve-bot'
+    if: |
+      (github.event.requested_reviewer.login == 'approve-bot' &&
+      github.event.action == 'labeled' &&
+      github.event.label.name == 'auto-approve')
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NUMBER: ${{ github.event.number }}

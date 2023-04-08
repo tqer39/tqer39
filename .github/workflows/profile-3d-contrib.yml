@@ -46,4 +46,4 @@ jobs:
           branch: ${{ env.BRANCH_NAME }}
           base: main
           delete-branch: false
-          labels: github-profile-3d-contrib
+          labels: auto-approve
