@@ -1,4 +1,4 @@
-<div style="z-index: 0; position: fixed; top: 0; left: 0; width: 100%; height: 0.3rem; background: linear-gradient(45deg, #3bade3, #9844b7, #44ea76); background-size: 200% 200%;"></div>
+<div style="z-index: 100; position: fixed; top: 0; left: 0; width: 100%; height: 0.3rem; background: linear-gradient(45deg, #3bade3, #9844b7, #44ea76); background-size: 200% 200%;"></div>
 
 ### Hey There 👋
 
