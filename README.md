@@ -1,3 +1,5 @@
+<div style="z-index: 0; position: fixed; top: 0; left: 0; width: 100%; height: 0.3rem; background: linear-gradient(45deg, #3bade3, #9844b7, #44ea76); background-size: 200% 200%;"></div>
+
 ### Hey There 👋
 
 <img src="https://komarev.com/ghpvc/?username=tqer39&label=Profile%20views&color=0e75b6&style=flat" alt="tqer39" />
