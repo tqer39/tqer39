@@ -2,6 +2,8 @@
 
 ### :computer: activity log
 
+<img src="https://github-readme-stats.vercel.app/api?username=tqer39&count_private=true&bg_color=00000F&border_color=00000F&title_color=19A5F0&text_color=8AC9D8&locale=en&hide_border=true&border_radius=10&show_owner=true" alt="tqer39's GitHub stats" />
+
 <img src="./profile-3d-contrib/profile-night-view.svg" alt="profile-night-view.svg" style="border-radius: 10px;" />
 
 <!--
