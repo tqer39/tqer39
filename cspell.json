@@ -11,6 +11,7 @@
     "pyproject.toml"
   ],
   "words": [
+    "athul",
     "autobuild",
     "Autobuild",
     "autofix",
@@ -23,12 +24,14 @@
     "CODEOWNERS",
     "codeql",
     "deployments",
+    "Galapagosmockingbird",
     "getsentry",
     "hmarr",
     "itkq",
     "kentaro",
     "linuxbrew",
     "markdownlint",
+    "minmax",
     "nodenv",
     "oidc",
     "OIDC",
@@ -45,6 +48,8 @@
     "tflint",
     "tfstate",
     "tqer",
+    "Waka",
+    "WAKATIME",
     "yoshi"
   ]
 }
