@@ -1,8 +1,8 @@
 ### Hey There 👋
 
-#### 草
+### :computer: activity log
 
-<img src="./profile-3d-contrib/profile-night-view.svg" alt="profile-night-view.svg" />
+<img src="./profile-3d-contrib/profile-night-view.svg" alt="profile-night-view.svg" style="border-radius: 10px;" />
 
 <!--
 **tqer39/tqer39** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
