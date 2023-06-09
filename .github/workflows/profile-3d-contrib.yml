@@ -24,7 +24,7 @@ jobs:
       BRANCH_NAME: feature/generate-github-profile-3d-contrib
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
 
       - name: git switch
         run: |
