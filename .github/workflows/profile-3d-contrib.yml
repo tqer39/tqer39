@@ -31,7 +31,7 @@ jobs:
           git switch -c "$BRANCH_NAME" >/dev/null 2>&1 || git switch "$BRANCH_NAME"
 
       - name: Profile 3d contrib
-        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+        uses: yoshi389111/github-profile-3d-contrib@0.7.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
