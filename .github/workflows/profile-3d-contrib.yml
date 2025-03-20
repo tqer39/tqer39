@@ -42,8 +42,13 @@ jobs:
           git config user.email github-actions@github.com
           git add -A .
           git commit -m "Update profile-3d-contrib"
-          git fetch origin main
-          git switch main
-          git merge --no-edit "$BRANCH_NAME"
-          git push -f origin main
-          git branch -d "$BRANCH_NAME"
+          git push -f origin "$BRANCH_NAME"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "$BRANCH_NAME"
+          base: main
+          title: "Update profile-3d-contrib"
+          body: "Automated update of profile-3d-contrib files."
