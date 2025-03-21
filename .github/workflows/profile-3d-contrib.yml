@@ -8,27 +8,25 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: profile-3d-contrib
-  cancel-in-progress: true
-
-permissions:
-  contents: write
-  pull-requests: write
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
     env:
       BRANCH_NAME: feature/generate-github-profile-3d-contrib
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       - name: git switch
         run: |
-          git switch -c "$BRANCH_NAME" >/dev/null 2>&1 || git switch "$BRANCH_NAME"
+          git switch -c "${{ env.BRANCH_NAME }}" >/dev/null 2>&1 || git switch "${{ env.BRANCH_NAME }}"
 
       - name: Profile 3d contrib
         uses: yoshi389111/github-profile-3d-contrib@0.9.0
@@ -42,13 +40,13 @@ jobs:
           git config user.email github-actions@github.com
           git add -A .
           git commit -m "Update profile-3d-contrib"
-          git push -f origin "$BRANCH_NAME"
+          git push -f origin "${{ env.BRANCH_NAME }}"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "$BRANCH_NAME"
+          branch: "${{ env.BRANCH_NAME }}"
           base: main
           title: "Update profile-3d-contrib"
           body: "Automated update of profile-3d-contrib files."
