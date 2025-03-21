@@ -34,13 +34,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
-      - name: git push -f origin main
+      - name: git push
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add -A .
           git commit -m "Update profile-3d-contrib"
           git push -f origin "${{ env.BRANCH_NAME }}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH_NAME }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7.0.8
