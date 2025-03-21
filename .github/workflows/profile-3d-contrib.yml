@@ -24,10 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: git switch
-        run: |
-          git switch -c "${{ env.BRANCH_NAME }}" >/dev/null 2>&1 || git switch "${{ env.BRANCH_NAME }}"
-
       - name: Profile 3d contrib
         uses: yoshi389111/github-profile-3d-contrib@0.9.0
         env:
