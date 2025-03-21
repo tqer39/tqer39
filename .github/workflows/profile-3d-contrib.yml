@@ -49,7 +49,7 @@ jobs:
           owner: ${{ github.repository_owner }}
 
       - name: Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
+        # if: steps.cpr.outputs.pull-request-operation == 'created'
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
