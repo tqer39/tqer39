@@ -52,4 +52,4 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
-          gh pr merge -R "tqer39/tqer39" --squash --auto "${{ steps.cpr.outputs.pull-request-number }}"
+          gh pr merge -R " ${{ github.repository_owner }}/${{ github.repository }}" --squash --auto "${{ steps.cpr.outputs.pull-request-number }}"
