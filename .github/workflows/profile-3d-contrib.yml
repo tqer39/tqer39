@@ -42,11 +42,6 @@ jobs:
           git commit -m "Update profile-3d-contrib"
           git push -f origin "${{ env.BRANCH_NAME }}"
 
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.BRANCH_NAME }}
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7.0.8
         with:
