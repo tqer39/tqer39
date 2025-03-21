@@ -50,6 +50,8 @@ jobs:
 
       - name: Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
           gh pr merge -R "tqer39/tqer39" --squash --auto "${{ steps.cpr.outputs.pull-request-number }}"
             -H "Accept: application/vnd.github.v3+json"
