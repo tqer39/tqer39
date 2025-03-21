@@ -1,22 +1,43 @@
-"editorconfig":
-  - ".editorconfig"
+---
+rules:
+  - matchers:
+      - "*.editorconfig"
+    labels:
+      - editorconfig
 
-"document":
-  - "**/*.md"
-  - "**/*.txt"
-  - "**/*.rst"
+  - matchers:
+      - "**/*.md"
+      - "**/*.txt"
+      - "**/*.rst"
+    labels:
+      - document
 
-"textlint":
-  - "**/.textlint*"
+  - matchers:
+      - "**/.textlint*"
+    labels:
+      - textlint
 
-"yamllint":
-  - "**/.yamllint"
+  - matchers:
+      - "**/.yamllint"
+    labels:
+      - yamllint
 
-"markdownlint":
-  - "**/.markdownlint*.json"
+  - matchers:
+      - "**/.markdownlint*.json"
+    labels:
+      - markdownlint
 
-"actionlint":
-  - ".github/workflows/actionlint.yml"
+  - matchers:
+      - "**/.tool-versions"
+    labels:
+      - asdf
 
-"CODEOWNERS":
-  - "CODEOWNERS"
+  - matchers:
+      - ".github/workflows/actionlint.yml"
+    labels:
+      - actionlint
+
+  - matchers:
+      - "CODEOWNERS"
+    labels:
+      - CODEOWNERS
