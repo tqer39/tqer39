@@ -40,10 +40,16 @@ jobs:
           title: "Update profile-3d-contrib"
           body: "Automated update of profile-3d-contrib files."
 
-      - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v3
+      - name: Generate GitHub App Token
+        id: app_token
+        uses: actions/create-github-app-token@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+          app-id: ${{ secrets.GHA_APP_ID }}
+          private-key: ${{ secrets.GHA_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        run: |
+          gh pr merge -R "tqer39/tqer39" --squash --auto "${{ steps.cpr.outputs.pull-request-number }}"
+            -H "Accept: application/vnd.github.v3+json"
