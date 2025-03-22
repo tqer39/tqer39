@@ -57,4 +57,5 @@ jobs:
             echo "No PR number found. Exiting."
             exit 1
           fi
+          gh pr review "$PR_NUMBER" --approve
           gh pr merge -R "${{ github.repository }}" --squash --auto "$PR_NUMBER"
