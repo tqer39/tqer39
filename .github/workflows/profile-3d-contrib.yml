@@ -58,6 +58,6 @@ jobs:
             exit 1
           fi
 
-          # Approve the PR
+          # NOTE: 先にマージしてから Approve すると auto merge によってマージされる
           gh pr merge -R "${{ github.repository }}" --squash --auto "$PR_NUMBER"
           gh pr review "$PR_NUMBER" --approve
