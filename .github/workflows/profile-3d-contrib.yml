@@ -52,10 +52,10 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
-          PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
-          MERGEABLE=$(gh pr view "$PR_NUMBER" --json mergeable -q '.mergeable')
-          if [ "$MERGEABLE" = "true" ]; then
+          # PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
+          # MERGEABLE=$(gh pr view "$PR_NUMBER" --json mergeable -q '.mergeable')
+          # if [ "$MERGEABLE" = "true" ]; then
             gh pr merge -R "${{ github.repository }}" --squash --auto "$PR_NUMBER"
-          else
-            echo "PR is not mergeable."
-          fi
+          # else
+          #   echo "PR is not mergeable."
+          # fi
