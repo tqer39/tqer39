@@ -59,14 +59,5 @@ jobs:
           fi
 
           # Approve the PR
-          gh pr review "$PR_NUMBER" --approve
-
-          # Check if the PR is already merged after approval
-          MERGED=$(gh pr view "$PR_NUMBER" --json merged -q '.merged')
-          if [ "$MERGED" = "true" ]; then
-            echo "PR is already merged after approval. Exiting."
-            exit 0
-          fi
-
-          # Merge the PR if not already merged
           gh pr merge -R "${{ github.repository }}" --squash --auto "$PR_NUMBER"
+          gh pr review "$PR_NUMBER" --approve
