@@ -32,9 +32,30 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7.0.8
+        id: cpr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: "${{ env.BRANCH_NAME }}"
           base: main
           title: "Update profile-3d-contrib"
           body: "Automated update of profile-3d-contrib files."
+
+      - name: Generate GitHub App Token
+        id: app_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GHA_APP_ID }}
+          private-key: ${{ secrets.GHA_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Pull Request Automerge
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
+        run: |
+          # PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
+          # MERGEABLE=$(gh pr view "$PR_NUMBER" --json mergeable -q '.mergeable')
+          # if [ "$MERGEABLE" = "true" ]; then
+            gh pr merge -R "${{ github.repository }}" --squash --auto "$PR_NUMBER"
+          # else
+          #   echo "PR is not mergeable."
+          # fi
