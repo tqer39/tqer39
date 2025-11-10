@@ -21,6 +21,7 @@ just setup
 ```
 
 This will:
+
 1. Install Homebrew (if not already installed)
 2. Install all dependencies from `Brewfile` (gh, just, actionlint, prek, shellcheck, yamllint)
 3. Setup prek hooks for automatic code quality checks
@@ -74,7 +75,7 @@ The repository enforces the following via `.pre-commit-config.yaml`:
 - **File integrity**: Large file detection (max 512KB), JSON/YAML validation, credential detection
 - **yamllint**: YAML file linting (config: `.yamllint`)
 - **cspell**: Spell checking (config: `cspell.json`)
-- **markdownlint**: Markdown linting (config: `.markdownlint.json`)
+- **markdownlint-cli2**: Markdown linting (config: `.markdownlint.json`)
   - Allows HTML elements: `img`, `details`, `summary`, `hr`, `p`, `style`, `div`
   - Disables: MD013 (line length), MD024 (duplicate headings), MD030 (list spacing), MD041 (first line heading)
 - **textlint**: Japanese text linting (config: `.textlintrc`)
@@ -87,6 +88,7 @@ The repository enforces the following via `.pre-commit-config.yaml`:
 ### Editor Configuration
 
 The repository uses `.editorconfig` with these settings:
+
 - Charset: UTF-8
 - Line endings: LF
 - Indent: 2 spaces
@@ -124,6 +126,7 @@ The repository uses `.editorconfig` with these settings:
 ## Dependency Management
 
 Renovate is configured via `renovate.json5` using the shared config:
+
 ```json
 {
   "extends": ["github>tqer39/renovate-config"]
@@ -190,6 +193,7 @@ just clean
 ### Updating Profile Content
 
 When editing `README.md`, ensure:
+
 - HTML elements are in the allowed list (see markdownlint config)
 - Spell check passes (add custom words to `cspell.json` if needed)
 - All prek hooks pass before committing
@@ -197,6 +201,7 @@ When editing `README.md`, ensure:
 ### Adding Custom Dictionary Words
 
 To add words to the spell checker, edit `cspell.json`:
+
 ```json
 {
   "words": [
@@ -209,6 +214,7 @@ To add words to the spell checker, edit `cspell.json`:
 ### Testing Changes Locally
 
 Before pushing changes:
+
 ```bash
 # Run all quality checks
 just lint
@@ -223,6 +229,7 @@ prek run --all-files
 ### Migrating from pre-commit to prek
 
 If you previously used pre-commit:
+
 ```bash
 # Uninstall pre-commit hooks
 pre-commit uninstall
