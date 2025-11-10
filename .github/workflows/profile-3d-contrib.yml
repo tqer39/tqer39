@@ -48,18 +48,6 @@ jobs:
           title: "Update profile-3d-contrib"
           body: "Automated update of profile-3d-contrib files."
 
-      - name: Trigger CI workflows
-        if: steps.cpr.outputs.pull-request-number
-        env:
-          GH_TOKEN: ${{ steps.app_token.outputs.token }}
-        run: |
-          # GitHub App tokenを使ってPRブランチに空のcommitをpushし、CIをトリガー
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout "${{ env.BRANCH_NAME }}"
-          git commit --allow-empty -m "chore: trigger CI workflows"
-          git push https://x-access-token:${{ steps.app_token.outputs.token }}@github.com/${{ github.repository }}.git "${{ env.BRANCH_NAME }}"
-
       - name: Pull Request Automerge
         if: steps.cpr.outputs.pull-request-number
         env:

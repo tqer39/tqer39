@@ -100,10 +100,11 @@ The repository uses `.editorconfig` with these settings:
 ### Automated Workflows
 
 1. **prek** (`.github/workflows/prek.yml`)
-   - Runs on: push to main, all PRs
+   - Runs on: push to main, all PRs (except `feature/generate-github-profile-3d-contrib`)
    - Executes all prek hooks with `--show-diff-on-failure`
    - Uses `j178/prek-action@v1` for faster CI execution
    - Timeout: 10 minutes
+   - Note: Profile 3D contribution PRs are excluded from checks
 
 2. **profile-3d-contrib** (`.github/workflows/profile-3d-contrib.yml`)
    - Runs on: Daily schedule (18:00 UTC / 03:00 JST), manual dispatch
