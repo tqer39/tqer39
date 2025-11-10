@@ -125,13 +125,21 @@ The repository uses `.editorconfig` with these settings:
 
 ## Dependency Management
 
-Renovate is configured via `renovate.json5` using the shared config:
+Renovate is configured via `renovate.json5` using the shared config with auto-merge enabled:
 
-```json
+```json5
 {
-  "extends": ["github>tqer39/renovate-config"]
+  "extends": ["github>tqer39/renovate-config"],
+  "platformAutomerge": true,
+  "automerge": true,
+  "automergeType": "pr"
 }
 ```
+
+Renovate will automatically create PRs for dependency updates and merge them when:
+
+- All CI checks pass
+- The PR is approved (if required by branch protection rules)
 
 ## Development Guidelines
 
