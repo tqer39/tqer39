@@ -30,16 +30,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7.0.8
-        id: cpr
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "${{ env.BRANCH_NAME }}"
-          base: main
-          title: "Update profile-3d-contrib"
-          body: "Automated update of profile-3d-contrib files."
-
       - name: Generate GitHub App Token
         id: app_token
         uses: actions/create-github-app-token@v2
@@ -47,6 +37,16 @@ jobs:
           app-id: ${{ secrets.GHA_APP_ID }}
           private-key: ${{ secrets.GHA_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7.0.8
+        id: cpr
+        with:
+          token: ${{ steps.app_token.outputs.token }}
+          branch: "${{ env.BRANCH_NAME }}"
+          base: main
+          title: "Update profile-3d-contrib"
+          body: "Automated update of profile-3d-contrib files."
 
       - name: Pull Request Automerge
         env:
