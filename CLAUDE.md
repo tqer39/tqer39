@@ -8,19 +8,39 @@ This is a GitHub profile README repository (username: tqer39). The README.md fil
 
 ## Code Quality and Linting
 
-This repository uses pre-commit hooks to maintain code quality. All commits must pass these checks:
+This repository uses **prek** (a faster, Rust-based alternative to pre-commit) to maintain code quality. All commits must pass these checks.
 
-### Running Pre-commit Hooks Locally
+### About prek
+
+- **Performance**: 7-10x faster than pre-commit
+- **Disk space**: Uses only ~50% of the disk space compared to pre-commit
+- **Compatibility**: Fully compatible with existing `.pre-commit-config.yaml` files
+- **Zero dependencies**: Single binary with no Python or runtime dependencies
+
+### Installing prek
 
 ```bash
-# Install pre-commit hooks
-pre-commit install
+# macOS/Linux (via curl)
+curl -fsSL https://prek.j178.dev/install.sh | sh
+
+# Or use pipx
+pipx install prek
+
+# Or use cargo
+cargo install prek
+```
+
+### Running prek Hooks Locally
+
+```bash
+# Install prek hooks (one-time setup)
+prek install
 
 # Run all hooks manually on all files
-pre-commit run --all-files
+prek run --all-files
 
 # Run all hooks with diff output on failure
-pre-commit run -a --show-diff-on-failure
+prek run -a --show-diff-on-failure
 ```
 
 ### Available Linters and Checks
@@ -53,9 +73,10 @@ The repository uses `.editorconfig` with these settings:
 
 ### Automated Workflows
 
-1. **pre-commit** (`.github/workflows/pre-commit.yml`)
+1. **prek** (`.github/workflows/prek.yml`)
    - Runs on: push to main, all PRs
-   - Executes all pre-commit hooks with `--show-diff-on-failure`
+   - Executes all prek hooks with `--show-diff-on-failure`
+   - Uses `j178/prek-action@v1` for faster CI execution
    - Timeout: 10 minutes
 
 2. **profile-3d-contrib** (`.github/workflows/profile-3d-contrib.yml`)
@@ -141,8 +162,21 @@ To add words to the spell checker, edit `cspell.json`:
 Before pushing changes:
 ```bash
 # Run all quality checks
-pre-commit run --all-files
+prek run --all-files
 
 # View the README locally (in browser or Markdown viewer)
 # Note: GitHub-specific widgets won't render locally
 ```
+
+### Migrating from pre-commit to prek
+
+If you previously used pre-commit:
+```bash
+# Uninstall pre-commit hooks
+pre-commit uninstall
+
+# Install prek hooks
+prek install
+```
+
+The existing `.pre-commit-config.yaml` file works without modification.

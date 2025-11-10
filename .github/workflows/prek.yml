@@ -1,5 +1,5 @@
 ---
-name: pre-commit
+name: prek
 
 on:
   push:
@@ -11,8 +11,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  pre-commit:
-    name: pre-commit
+  prek:
+    name: prek
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -21,7 +21,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: pre-commit
-        uses: pre-commit/action@v3.0.1
+      - name: prek
+        uses: j178/prek-action@v1
         with:
-          extra_args: -a --show-diff-on-failure
+          extra-args: -a --show-diff-on-failure
