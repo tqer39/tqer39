@@ -6,6 +6,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a GitHub profile README repository (username: tqer39). The README.md file is displayed on the GitHub profile page and contains profile information, skills, activity statistics, and visual elements.
 
+## Getting Started
+
+### Quick Setup (Recommended)
+
+Bootstrap your development environment with a single command:
+
+```bash
+# Install Homebrew and all required tools
+make bootstrap
+
+# After bootstrap completes, setup prek hooks
+just setup
+```
+
+This will:
+1. Install Homebrew (if not already installed)
+2. Install all dependencies from `Brewfile` (gh, just, actionlint, prek, shellcheck, yamllint)
+3. Setup prek hooks for automatic code quality checks
+
+### Manual Setup
+
+If you prefer manual installation:
+
+```bash
+# Install Homebrew (if not installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install dependencies
+brew bundle install
+
+# Setup prek hooks
+prek install
+```
+
 ## Code Quality and Linting
 
 This repository uses **prek** (a faster, Rust-based alternative to pre-commit) to maintain code quality. All commits must pass these checks.
@@ -17,30 +51,20 @@ This repository uses **prek** (a faster, Rust-based alternative to pre-commit) t
 - **Compatibility**: Fully compatible with existing `.pre-commit-config.yaml` files
 - **Zero dependencies**: Single binary with no Python or runtime dependencies
 
-### Installing prek
-
-```bash
-# macOS/Linux (via curl)
-curl -fsSL https://prek.j178.dev/install.sh | sh
-
-# Or use pipx
-pipx install prek
-
-# Or use cargo
-cargo install prek
-```
-
 ### Running prek Hooks Locally
 
 ```bash
-# Install prek hooks (one-time setup)
-prek install
+# Run all linters
+just lint
 
-# Run all hooks manually on all files
-prek run --all-files
+# Run specific hook
+just lint-hook <hook-name>
 
-# Run all hooks with diff output on failure
-prek run -a --show-diff-on-failure
+# Fix common formatting issues
+just fix
+
+# Format all files with Prettier
+just format
 ```
 
 ### Available Linters and Checks
@@ -138,12 +162,37 @@ When working in this repository (from `.github/copilot-instructions.md`):
 
 ## Common Tasks
 
+### Development Workflow
+
+```bash
+# Show all available commands
+just help
+
+# Check tool installation status
+just status
+
+# Run all linters before committing
+just lint
+
+# Fix common formatting issues
+just fix
+
+# Format all files
+just format
+
+# Update Homebrew packages
+just update-brew
+
+# Clean prek cache (if needed)
+just clean
+```
+
 ### Updating Profile Content
 
 When editing `README.md`, ensure:
 - HTML elements are in the allowed list (see markdownlint config)
 - Spell check passes (add custom words to `cspell.json` if needed)
-- All pre-commit hooks pass before committing
+- All prek hooks pass before committing
 
 ### Adding Custom Dictionary Words
 
@@ -162,6 +211,9 @@ To add words to the spell checker, edit `cspell.json`:
 Before pushing changes:
 ```bash
 # Run all quality checks
+just lint
+
+# Or run prek directly
 prek run --all-files
 
 # View the README locally (in browser or Markdown viewer)
@@ -176,7 +228,7 @@ If you previously used pre-commit:
 pre-commit uninstall
 
 # Install prek hooks
-prek install
+just setup
 ```
 
 The existing `.pre-commit-config.yaml` file works without modification.
