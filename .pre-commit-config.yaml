@@ -86,4 +86,4 @@ repos:
     rev: 42.4.0
     hooks:
       - id: renovate-config-validator
-        files: renovate.json
+        files: renovate.json5
