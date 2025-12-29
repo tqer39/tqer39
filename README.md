@@ -12,8 +12,8 @@
 
 ## 📊 GitHub Stats
 
-<a href="https://git.io/streak-stats">
-  <img src="https://streak-stats.demolab.com?user=tqer39&theme=transparent&hide_border=true&date_format=j%20M%5B%20Y%5D&background=00000F&ring=19A5F0&fire=19A5F0&currStreakLabel=8AC9D8&sideLabels=8AC9D8&currStreakNum=8AC9D8&sideNums=8AC9D8&dates=8AC9D8" alt="GitHub Streak" />
+<a href="https://github.com/DenverCoder1/github-readme-streak-stats">
+  <img src="https://github-readme-streak-stats-eight.vercel.app?user=tqer39&theme=dark&hide_border=true" alt="GitHub Streak" />
 </a>
 
 ## 🌐 3D Contribution
