@@ -4,13 +4,17 @@
   "MD030": false,
   "MD033": {
     "allowed_elements": [
-      "img",
+      "a",
       "details",
-      "summary",
+      "div",
+      "h1",
       "hr",
+      "i",
+      "img",
       "p",
+      "span",
       "style",
-      "div"
+      "summary"
     ]
   },
   "MD041": false,
