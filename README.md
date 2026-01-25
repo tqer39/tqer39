@@ -55,11 +55,13 @@
 ## 🌍 Cloud Services I've Used
 
 <p>
-  <img src="https://cdn.simpleicons.org/vercel/white" alt="Vercel" width="40" height="40" title="Vercel" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/cloudflare/white" alt="Cloudflare" width="40" height="40" title="Cloudflare" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/vercel" alt="Vercel" width="40" height="40" title="Vercel" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare" width="40" height="40" title="Cloudflare" />&nbsp;&nbsp;
   <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/flydotio/white" alt="Fly.io" width="40" height="40" title="Fly.io" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/1password/white" alt="1Password" width="40" height="40" title="1Password" />
+  <img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />
 </p>
 
 ## 💻 OS
@@ -71,10 +73,10 @@
 ## 🤖 AI Tools
 
 <p>
-  <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic/white" alt="Claude Code" width="48" height="48" /></a>&nbsp;&nbsp;
+  <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic" alt="Claude Code" width="48" height="48" /></a>&nbsp;&nbsp;
   <a href="https://openai.com/index/openai-codex/"><img src="./src/icon/openai.svg" alt="Codex" width="48" height="48" /></a>&nbsp;&nbsp;
   <a href="https://devin.ai/"><img src="./src/icon/devin.png" alt="Devin" width="48" height="48" /></a>&nbsp;&nbsp;
-  <a href="https://www.cursor.com/"><img src="https://cdn.simpleicons.org/cursor/white" alt="Cursor" width="48" height="48" /></a>
+  <a href="https://www.cursor.com/"><img src="https://cdn.simpleicons.org/cursor" alt="Cursor" width="48" height="48" /></a>
 </p>
 
 ## 📊 GitHub Stats
