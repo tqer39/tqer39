@@ -52,6 +52,16 @@
   <img src="./src/icon/gcp/iam.svg" alt="IAM" width="40" height="40" title="IAM" />
 </p>
 
+## 🌍 Cloud Services I've Used
+
+<p>
+  <img src="https://cdn.simpleicons.org/vercel/white" alt="Vercel" width="40" height="40" title="Vercel" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/cloudflare/white" alt="Cloudflare" width="40" height="40" title="Cloudflare" />&nbsp;&nbsp;
+  <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/flydotio/white" alt="Fly.io" width="40" height="40" title="Fly.io" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/1password/white" alt="1Password" width="40" height="40" title="1Password" />
+</p>
+
 ## 💻 OS
 
 <a href="https://skillicons.dev">
