@@ -7,15 +7,22 @@
 ## 🔨 Skills
 
 <a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=aws,docker,git,py,ts,go,bash,react,terraform,mysql,linux,vscode,github&perline=13" alt="Skills" />
+  <img src="https://skillicons.dev/icons?i=aws,docker,git,py,ts,go,bash,powershell,react,terraform,mysql,linux,vscode,github&perline=14" alt="Skills" />
+</a>
+
+## 💻 OS
+
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=windows,apple,linux&perline=3" alt="OS" />
 </a>
 
 ## 🤖 AI Tools
 
 <p>
   <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic/white" alt="Claude Code" width="48" height="48" /></a>&nbsp;&nbsp;
-  <a href="https://openai.com/index/openai-codex/"><img src="https://cdn.simpleicons.org/openai/white" alt="Codex" width="48" height="48" /></a>&nbsp;&nbsp;
-  <a href="https://devin.ai/"><img src="https://cdn.simpleicons.org/cognition/white" alt="Devin" width="48" height="48" /></a>
+  <a href="https://openai.com/index/openai-codex/"><img src="./src/icon/openai.svg" alt="Codex" width="48" height="48" /></a>&nbsp;&nbsp;
+  <a href="https://devin.ai/"><img src="./src/icon/devin.png" alt="Devin" width="48" height="48" /></a>&nbsp;&nbsp;
+  <a href="https://www.cursor.com/"><img src="https://cdn.simpleicons.org/cursor/white" alt="Cursor" width="48" height="48" /></a>
 </p>
 
 ## 📊 GitHub Stats
