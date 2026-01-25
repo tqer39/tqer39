@@ -6,6 +6,7 @@ brew "just"         # Command runner
 
 # Linters and formatters
 brew "actionlint"   # GitHub Actions workflow linter
+brew "biome"        # Fast formatter for JSON/JS/TS
 brew "prek"         # Fast pre-commit hook runner
 brew "shellcheck"   # Shell script linter
 brew "yamllint"     # YAML linter

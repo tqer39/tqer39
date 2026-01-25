@@ -23,7 +23,7 @@ just setup
 This will:
 
 1. Install Homebrew (if not already installed)
-2. Install all dependencies from `Brewfile` (gh, just, actionlint, prek, shellcheck, yamllint)
+2. Install all dependencies from `Brewfile` (gh, just, actionlint, biome, prek, shellcheck, yamllint)
 3. Setup prek hooks for automatic code quality checks
 
 ### Manual Setup
@@ -73,6 +73,7 @@ just format
 The repository enforces the following via `.pre-commit-config.yaml`:
 
 - **File integrity**: Large file detection (max 512KB), JSON/YAML validation, credential detection
+- **biome**: JSON file formatting (config: `biome.json`)
 - **yamllint**: YAML file linting (config: `.yamllint`)
 - **cspell**: Spell checking (config: `cspell.json`)
 - **markdownlint-cli2**: Markdown linting (config: `.markdownlint.json`)

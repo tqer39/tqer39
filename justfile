@@ -40,15 +40,18 @@ fix:
     prek run mixed-line-ending
     @echo "✓ Common fixes applied"
 
-# Format all files with Prettier
+# Format all files (YAML with Prettier, JSON with Biome)
 format:
-    @echo "Formatting all files with Prettier..."
+    @echo "Formatting YAML files with Prettier..."
     prek run prettier --all-files
+    @echo "Formatting JSON files with Biome..."
+    prek run biome-format --all-files
 
 # Format only staged files
 format-staged:
     @echo "Formatting staged files..."
     prek run prettier
+    prek run biome-format
 
 # Clean prek cache
 clean:
@@ -80,6 +83,9 @@ status:
     @echo ""
     @echo "actionlint:"
     @command -v actionlint >/dev/null && actionlint --version || echo "  Not installed"
+    @echo ""
+    @echo "biome:"
+    @command -v biome >/dev/null && biome --version || echo "  Not installed"
 
 # Update Homebrew packages
 update-brew:
