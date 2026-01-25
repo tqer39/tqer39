@@ -59,7 +59,9 @@
   <img src="https://cdn.simpleicons.org/cloudflare/white" alt="Cloudflare" width="40" height="40" title="Cloudflare" />&nbsp;&nbsp;
   <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/flydotio/white" alt="Fly.io" width="40" height="40" title="Fly.io" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/1password/white" alt="1Password" width="40" height="40" title="1Password" />
+  <img src="https://cdn.simpleicons.org/1password/white" alt="1Password" width="40" height="40" title="1Password" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/gitlab/white" alt="GitLab" width="40" height="40" title="GitLab" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/datadog/white" alt="Datadog" width="40" height="40" title="Datadog" />
 </p>
 
 ## 💻 OS
