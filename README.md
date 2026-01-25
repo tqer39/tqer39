@@ -10,6 +10,14 @@
   <img src="https://skillicons.dev/icons?i=aws,docker,git,py,ts,go,bash,react,terraform,mysql,linux,vscode,github&perline=13" alt="Skills" />
 </a>
 
+## 🤖 AI Tools
+
+<p>
+  <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic/white" alt="Claude Code" width="48" height="48" /></a>&nbsp;&nbsp;
+  <a href="https://openai.com/index/openai-codex/"><img src="https://cdn.simpleicons.org/openai/white" alt="Codex" width="48" height="48" /></a>&nbsp;&nbsp;
+  <a href="https://devin.ai/"><img src="https://cdn.simpleicons.org/cognition/white" alt="Devin" width="48" height="48" /></a>
+</p>
+
 ## 📊 GitHub Stats
 
 <a href="https://github.com/DenverCoder1/github-readme-streak-stats">
