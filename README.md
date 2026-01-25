@@ -42,6 +42,10 @@
   <img src="./src/icon/aws/ElasticBeanstalk.png" alt="Elastic Beanstalk" width="40" height="40" title="Elastic Beanstalk" />
   <img src="./src/icon/aws/SimpleStorageService.png" alt="S3" width="40" height="40" title="S3" />
   <img src="./src/icon/aws/EFS.png" alt="EFS" width="40" height="40" title="EFS" />
+  <img src="./src/icon/aws/CertificateManager.svg" alt="Certificate Manager" width="40" height="40" title="Certificate Manager" />
+  <img src="./src/icon/aws/Amplify.svg" alt="Amplify" width="40" height="40" title="Amplify" />
+  <img src="./src/icon/aws/APIGateway.svg" alt="API Gateway" width="40" height="40" title="API Gateway" />
+  <img src="./src/icon/aws/ElasticLoadBalancing.svg" alt="ELB" width="40" height="40" title="ELB" />
 </p>
 
 ## ☁️ GCP
@@ -61,7 +65,9 @@
   <img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" />&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" />&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />
+  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />&nbsp;&nbsp;
+  <img src="./src/icon/iaas/slack.svg" alt="Slack" width="40" height="40" title="Slack" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/discord" alt="Discord" width="40" height="40" title="Discord" />
 </p>
 
 ## 💻 OS
