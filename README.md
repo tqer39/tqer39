@@ -44,6 +44,14 @@
   <img src="./src/icon/aws/EFS.png" alt="EFS" width="40" height="40" title="EFS" />
 </p>
 
+## ☁️ GCP
+
+<p>
+  <img src="./src/icon/gcp/cloud_domains.svg" alt="Cloud Domains" width="40" height="40" title="Cloud Domains" />
+  <img src="./src/icon/gcp/cloud_dns.svg" alt="Cloud DNS" width="40" height="40" title="Cloud DNS" />
+  <img src="./src/icon/gcp/iam.svg" alt="IAM" width="40" height="40" title="IAM" />
+</p>
+
 ## 💻 OS
 
 <a href="https://skillicons.dev">
