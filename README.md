@@ -1,8 +1,12 @@
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&pause=1000&color=19A5F0&width=500&lines=Hey+There+%F0%9F%91%8B;Cloud+%26+DevOps+Engineer" alt="Typing SVG" /></a>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=280&color=0:ff00ff,100:00ffff&text=tqer39&fontColor=ffffff&fontSize=70&desc=Cloud%20%26%20DevOps%20Engineer&descAlign=50&descAlignY=65&fontAlign=50&fontAlignY=40&animation=twinkling" width="100%" alt="header" />
+</p>
 
-[![GitHub](https://img.shields.io/badge/GitHub-tqer39-181717?style=flat&logo=github)](https://github.com/tqer39)
-[![Twitter](https://img.shields.io/badge/Twitter-@tqer39-1DA1F2?style=flat&logo=twitter&logoColor=white)](https://twitter.com/tqer39)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Takeru_Ooyama-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/takeru-o-oyama-317337132)
+<p align="center">
+  <a href="https://github.com/tqer39"><img src="https://img.shields.io/badge/GitHub-tqer39-181717?style=for-the-badge&logo=github" alt="GitHub" /></a>
+  <a href="https://twitter.com/tqer39"><img src="https://img.shields.io/badge/Twitter-@tqer39-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter" /></a>
+  <a href="https://www.linkedin.com/in/takeru-o-oyama-317337132"><img src="https://img.shields.io/badge/LinkedIn-Takeru_Ooyama-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn" /></a>
+</p>
 
 ## 🔨 Skills
 
@@ -94,3 +98,9 @@
 ## 🌐 3D Contribution
 
 <img src="./profile-3d-contrib/profile-night-view.svg" alt="3D Contribution" width="100%" />
+
+<p align="center">
+  <i>Shipping infrastructure at the speed of light.</i>
+</p>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=150&color=0:ff1493,100:39ff14&section=footer" width="100%" alt="footer" />
