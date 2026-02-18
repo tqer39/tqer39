@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=280&color=0:ff00ff,100:00ffff&text=tqer39&fontColor=ffffff&fontSize=70&desc=Cloud%20%26%20DevOps%20Engineer&descAlign=50&descAlignY=65&fontAlign=50&fontAlignY=40&animation=twinkling" width="100%" alt="header" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=280&color=0:ff00ff,100:00ffff&text=tqer39&fontColor=ffffff&fontSize=70&desc=Cloud%20%26%20DevOps%20Engineer&descAlign=50&descAlignY=65&fontAlign=50&fontAlignY=40" width="100%" alt="header" />
 
 <p align="center">
   <a href="https://github.com/tqer39"><img src="https://img.shields.io/badge/GitHub-tqer39-181717?style=for-the-badge&logo=github" alt="GitHub" /></a>
