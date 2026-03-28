@@ -22,24 +22,24 @@ jobs:
       BRANCH_NAME: feature/generate-github-profile-3d-contrib
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Profile 3d contrib
-        uses: yoshi389111/github-profile-3d-contrib@v0.9.2
+        uses: yoshi389111/github-profile-3d-contrib@5b718734e8da645411919f0ae9ab9e7f9377158f # v0.9.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
       - name: Generate GitHub App Token
         id: app_token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3
         with:
           app-id: ${{ secrets.GHA_APP_ID }}
           private-key: ${{ secrets.GHA_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8.1.0
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         id: cpr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
