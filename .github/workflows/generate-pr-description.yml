@@ -1,5 +1,5 @@
 ---
-name: OpenAI Generate PR Title and Description
+name: Generate PR Title and Description
 
 on:
   pull_request:
@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
+      contents: read # uses: actions/checkout
       pull-requests: write # uses: tqer39/openai-generate-pr-description
     # Check if the PR is not created by 'renovate' or 'tqer39-apps'
     if: contains(fromJSON('["renovate[bot]", "tqer39-apps[bot]"]'), github.event.pull_request.user.login) == false
@@ -27,6 +28,6 @@ jobs:
       - uses: tqer39/openai-generate-pr-description@90dbc0ef9ea813159242481eaa1f63d97263f1c1 # v2.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          openai-model: "gpt-4o"
+          api-key: ${{ secrets.OPENROUTER_API_KEY }}
+          model: "openai/gpt-4o-mini"
           locale: "ja"
