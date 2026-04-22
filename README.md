@@ -65,14 +65,20 @@
 ## 🌍 Cloud Services I've Used
 
 <p>
-  <img src="https://cdn.simpleicons.org/vercel" alt="Vercel" width="40" height="40" title="Vercel" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare" width="40" height="40" title="Cloudflare" />&nbsp;&nbsp;
-  <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" />&nbsp;&nbsp;
-  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />&nbsp;&nbsp;
-  <img src="./src/icon/iaas/slack.svg" alt="Slack" width="40" height="40" title="Slack" />&nbsp;&nbsp;
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/vercel/white" />
+    <img src="https://cdn.simpleicons.org/vercel" alt="Vercel" width="40" height="40" title="Vercel" />
+  </picture>
+  <img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare" width="40" height="40" title="Cloudflare" />
+  <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/flydotio/ffffff" />
+    <img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" />
+  </picture>
+  <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" />
+  <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" />
+  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />
+  <img src="./src/icon/iaas/slack.svg" alt="Slack" width="40" height="40" title="Slack" />
   <img src="https://cdn.simpleicons.org/discord" alt="Discord" width="40" height="40" title="Discord" />
 </p>
 
