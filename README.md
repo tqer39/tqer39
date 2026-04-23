@@ -64,7 +64,17 @@
 
 ## 🌍 Cloud Services I've Used
 
-<p><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/vercel/white" /><img src="https://cdn.simpleicons.org/vercel" alt="Vercel" width="40" height="40" title="Vercel" /></picture> <img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare" width="40" height="40" title="Cloudflare" /> <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" /> <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/flydotio/ffffff" /><img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" /></picture> <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" /> <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" /> <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" /> <img src="./src/icon/iaas/slack.svg" alt="Slack" width="40" height="40" title="Slack" /> <img src="https://cdn.simpleicons.org/discord" alt="Discord" width="40" height="40" title="Discord" /></p>
+<p>
+  <img src="https://cdn.simpleicons.org/vercel" alt="Vercel" width="40" height="40" title="Vercel" />
+  <img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare" width="40" height="40" title="Cloudflare" />
+  <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />
+  <img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" />
+  <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" />
+  <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" />
+  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />
+  <img src="./src/icon/iaas/slack.svg" alt="Slack" width="40" height="40" title="Slack" />
+  <img src="https://cdn.simpleicons.org/discord" alt="Discord" width="40" height="40" title="Discord" />
+</p>
 
 ## 💻 OS
 
@@ -75,10 +85,10 @@
 ## 🤖 AI Tools
 
 <p>
-  <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic" alt="Claude Code" width="48" height="48" /></a>&nbsp;&nbsp;
-  <a href="https://openai.com/index/openai-codex/"><img src="./src/icon/openai.svg" alt="Codex" width="48" height="48" /></a>&nbsp;&nbsp;
-  <a href="https://devin.ai/"><img src="./src/icon/devin.png" alt="Devin" width="48" height="48" /></a>&nbsp;&nbsp;
-  <a href="https://www.cursor.com/"><img src="https://cdn.simpleicons.org/cursor" alt="Cursor" width="48" height="48" /></a>
+  <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic" alt="Claude Code" width="48" height="48" title="Claude Code" /></a>
+  <a href="https://openai.com/index/openai-codex/"><img src="./src/icon/openai.svg" alt="Codex" width="48" height="48" title="Codex" /></a>
+  <a href="https://devin.ai/"><img src="./src/icon/devin.png" alt="Devin" width="48" height="48" title="Devin" /></a>
+  <a href="https://www.cursor.com/"><img src="https://cdn.simpleicons.org/cursor" alt="Cursor" width="48" height="48" title="Cursor" /></a>
 </p>
 
 ## 📊 GitHub Stats
