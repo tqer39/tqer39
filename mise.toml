@@ -1,0 +1,7 @@
+[tools]
+node = "22"
+pnpm = "10.33.1"
+lefthook = "2.1.5"
+yamllint = "1.38.0"
+actionlint = "1.7.12"
+shellcheck = "0.11.0"
