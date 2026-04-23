@@ -7,57 +7,38 @@ help:
 # Setup development environment
 setup:
     @echo "Setting up development environment..."
-    @echo ""
-    @echo "Installing prek hooks..."
-    prek install
-    @echo ""
+    @if command -v mise >/dev/null 2>&1; then \
+      echo "→ Installing tools with mise..."; \
+      mise install; \
+    else \
+      echo "⚠ mise not found. Install via 'make bootstrap' or 'brew install mise'."; \
+      exit 1; \
+    fi
+    @echo "→ Installing node dev dependencies with pnpm..."
+    @pnpm install --frozen-lockfile
+    @echo "→ Installing lefthook git hooks..."
+    @lefthook install
     @echo "✓ Setup complete!"
-    @echo ""
-    @echo "Available commands:"
-    @echo "  just lint         - Run all linters"
-    @echo "  just fix          - Fix common formatting issues"
-    @echo "  just format       - Format all files with Prettier"
-    @echo "  just clean        - Clear prek cache"
 
-# Run all prek hooks
+# Run all linters (lefthook)
 lint:
-    @echo "Running all linters..."
-    prek run --all-files
+    @echo "🔍 Running linters..."
+    @lefthook run pre-commit --all-files
 
-# Run specific prek hook
+# Run specific lefthook command
 lint-hook hook:
-    @echo "Running hook: {{ hook }}"
-    prek run {{ hook }}
+    @lefthook run pre-commit --commands {{hook}} --all-files
 
 # Fix common formatting issues
 fix:
-    @echo "Fixing common formatting issues..."
-    @echo "  - Fixing end of file..."
-    prek run end-of-file-fixer
-    @echo "  - Fixing trailing whitespace..."
-    prek run trailing-whitespace
-    @echo "  - Fixing mixed line endings..."
-    prek run mixed-line-ending
-    @echo "✓ Common fixes applied"
+    @lefthook run pre-commit --commands end-of-file-fixer --all-files
+    @lefthook run pre-commit --commands trailing-whitespace --all-files
+    @lefthook run pre-commit --commands mixed-line-ending --all-files
+    @lefthook run pre-commit --commands markdownlint --all-files
 
-# Format all files (YAML with Prettier, JSON with Biome)
+# Format all files
 format:
-    @echo "Formatting YAML files with Prettier..."
-    prek run prettier --all-files
-    @echo "Formatting JSON files with Biome..."
-    prek run biome-format --all-files
-
-# Format only staged files
-format-staged:
-    @echo "Formatting staged files..."
-    prek run prettier
-    prek run biome-format
-
-# Clean prek cache
-clean:
-    @echo "Cleaning prek cache..."
-    prek clean
-    @echo "✓ Cache cleared"
+    @lefthook run pre-commit --commands biome-format --all-files
 
 # Show tool status
 status:
@@ -66,26 +47,20 @@ status:
     @echo "Homebrew:"
     @command -v brew >/dev/null && brew --version || echo "  Not installed"
     @echo ""
-    @echo "prek:"
-    @command -v prek >/dev/null && prek --version || echo "  Not installed"
+    @echo "mise:"
+    @command -v mise >/dev/null && mise --version || echo "  Not installed"
+    @echo ""
+    @echo "lefthook:"
+    @command -v lefthook >/dev/null && lefthook version || echo "  Not installed"
     @echo ""
     @echo "Node.js:"
     @command -v node >/dev/null && node --version || echo "  Not installed"
     @echo ""
+    @echo "pnpm:"
+    @command -v pnpm >/dev/null && pnpm --version || echo "  Not installed"
+    @echo ""
     @echo "GitHub CLI:"
     @command -v gh >/dev/null && gh --version | head -n1 || echo "  Not installed"
-    @echo ""
-    @echo "yamllint:"
-    @command -v yamllint >/dev/null && yamllint --version || echo "  Not installed"
-    @echo ""
-    @echo "shellcheck:"
-    @command -v shellcheck >/dev/null && shellcheck --version | head -n2 | tail -n1 || echo "  Not installed"
-    @echo ""
-    @echo "actionlint:"
-    @command -v actionlint >/dev/null && actionlint --version || echo "  Not installed"
-    @echo ""
-    @echo "biome:"
-    @command -v biome >/dev/null && biome --version || echo "  Not installed"
 
 # Update Homebrew packages
 update-brew:

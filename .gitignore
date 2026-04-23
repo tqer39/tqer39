@@ -1,3 +1,9 @@
+# Node.js dev tooling (managed via pnpm for lefthook)
+node_modules/
+
+# Local Claude settings
+.claude/
+
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,visualstudiocode,vim,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,visualstudiocode,vim,intellij
 

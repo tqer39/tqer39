@@ -1,12 +1,6 @@
-# Brewfile for tqer39 GitHub Profile development
+# Brewfile for tqer39 GitHub Profile development.
+# 言語/リンタツール (node, pnpm, lefthook, yamllint, actionlint, shellcheck) は mise.toml で管理する。
 
-# Core tools
 brew "gh"           # GitHub CLI
 brew "just"         # Command runner
-
-# Linters and formatters
-brew "actionlint"   # GitHub Actions workflow linter
-brew "biome"        # Fast formatter for JSON/JS/TS
-brew "prek"         # Fast pre-commit hook runner
-brew "shellcheck"   # Shell script linter
-brew "yamllint"     # YAML linter
+brew "mise"         # Runtime / tool version manager
