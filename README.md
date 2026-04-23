@@ -65,15 +65,15 @@
 ## 🌍 Cloud Services I've Used
 
 <p>
-  <img src="https://cdn.simpleicons.org/vercel" alt="Vercel" width="40" height="40" title="Vercel" />
-  <img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare" width="40" height="40" title="Cloudflare" />
+  <img src="./src/icon/iaas/vercel.svg" alt="Vercel" width="40" height="40" title="Vercel" />
+  <img src="./src/icon/iaas/cloudflare.svg" alt="Cloudflare" width="40" height="40" title="Cloudflare" />
   <img src="./src/icon/iaas/neon.svg" alt="Neon" width="40" height="40" title="Neon" />
-  <img src="https://cdn.simpleicons.org/flydotio" alt="Fly.io" width="40" height="40" title="Fly.io" />
-  <img src="https://cdn.simpleicons.org/1password" alt="1Password" width="40" height="40" title="1Password" />
-  <img src="https://cdn.simpleicons.org/gitlab" alt="GitLab" width="40" height="40" title="GitLab" />
-  <img src="https://cdn.simpleicons.org/datadog" alt="Datadog" width="40" height="40" title="Datadog" />
+  <img src="./src/icon/iaas/flydotio.svg" alt="Fly.io" width="40" height="40" title="Fly.io" />
+  <img src="./src/icon/iaas/1password.svg" alt="1Password" width="40" height="40" title="1Password" />
+  <img src="./src/icon/iaas/gitlab.svg" alt="GitLab" width="40" height="40" title="GitLab" />
+  <img src="./src/icon/iaas/datadog.svg" alt="Datadog" width="40" height="40" title="Datadog" />
   <img src="./src/icon/iaas/slack.svg" alt="Slack" width="40" height="40" title="Slack" />
-  <img src="https://cdn.simpleicons.org/discord" alt="Discord" width="40" height="40" title="Discord" />
+  <img src="./src/icon/iaas/discord.svg" alt="Discord" width="40" height="40" title="Discord" />
 </p>
 
 ## 💻 OS
@@ -85,10 +85,10 @@
 ## 🤖 AI Tools
 
 <p>
-  <a href="https://claude.ai/code"><img src="https://cdn.simpleicons.org/anthropic" alt="Claude Code" width="48" height="48" title="Claude Code" /></a>
+  <a href="https://claude.ai/code"><img src="./src/icon/anthropic.svg" alt="Claude Code" width="48" height="48" title="Claude Code" /></a>
   <a href="https://openai.com/index/openai-codex/"><img src="./src/icon/openai.svg" alt="Codex" width="48" height="48" title="Codex" /></a>
   <a href="https://devin.ai/"><img src="./src/icon/devin.png" alt="Devin" width="48" height="48" title="Devin" /></a>
-  <a href="https://www.cursor.com/"><img src="https://cdn.simpleicons.org/cursor" alt="Cursor" width="48" height="48" title="Cursor" /></a>
+  <a href="https://www.cursor.com/"><img src="./src/icon/cursor.svg" alt="Cursor" width="48" height="48" title="Cursor" /></a>
 </p>
 
 ## 📊 GitHub Stats
