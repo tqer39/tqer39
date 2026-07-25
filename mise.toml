@@ -1,5 +1,5 @@
 [tools]
-node = "22"
+node = "24"
 pnpm = "10.33.2"
 lefthook = "2.1.6"
 yamllint = "1.38.0"
