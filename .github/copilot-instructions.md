@@ -55,6 +55,20 @@ Homebrew のシェル設定を追加します。
 AI 向けの指示を生成して Lefthook のフックを設定します。
 Node.js の開発ツールは、各プラットフォームで共通のリポジトリ内 pnpm 依存関係として管理します。
 
+ツールと設定の管理場所は次のとおりです。更新時は、対応する正本を変更してください。
+
+| 管理場所 | 管理対象 |
+| --- | --- |
+| `Brewfile` | GitHub CLI と mise |
+| `mise.toml` | Node.js、pnpm、Lefthook、yamllint、actionlint、shellcheck のバージョンと開発タスク |
+| `package.json` / `pnpm-lock.yaml` | Oxlint、Oxfmt、rulesync、ドキュメント用 lint の依存関係と解決結果 |
+| `pnpm-workspace.yaml` / `patches/` | 依存関係の上書きとセキュリティ修正 |
+| `lefthook.yml` | Git hooks と品質チェックの実行定義 |
+| `.rulesync/rules/overview.md` | AI 向けの開発ガイドの正本 |
+
+開発コマンドは `mise.toml` に集約されています。
+依存関係を再現する場合は `pnpm install --frozen-lockfile` を使用してください。
+
 ```bash
 mise run help              # 利用できるコマンドを表示
 mise run status            # ツールのインストール状況を確認
@@ -84,6 +98,18 @@ mise run rules-check       # AI 向けの指示が同期されているか確認
 許可された HTML 要素を使用し、必要に応じて `cspell.json` に辞書の単語を追加してください。
 GitHub 固有のウィジェットは、ローカルでは表示されない場合があります。
 
+### チェックが修正を検出した場合
+
+PR 前の検証では、ファイルが自動修正された場合も失敗として扱います。
+この検証では修正の自動ステージを無効にしているため、修正差分を確認してから必要なファイルを
+ステージしてください。関係のないユーザーの変更を一緒にステージしないでください。
+
+空白・改行・Markdown の修正には `mise run fix`、
+JSON と JavaScript/TypeScript の整形には `mise run format` を使用します。
+AI 向けの指示の同期ずれは、正本を確認して `mise run rules` で生成し直します。
+修正後は CI と同じ全検証を再実行し、`git diff --check` と最終差分も確認してください。
+CI の実行コマンドは `.github/workflows/lint.yml` が正本です。
+
 ## rulesync の運用
 
 AI 共通の指示は、正本の `.rulesync/rules/overview.md` を編集してください。
@@ -97,8 +123,12 @@ Codex と Devin は `AGENTS.md` を共有します。`pnpm run rules:check` で�
 - `.github/workflows/lint.yml` でツールと依存関係をインストールし、`mise run lint` を実行します。
   `workflow-result` ジョブで lint の結果を確認します。
 - `.github/workflows/profile-3d-contrib.yml` で、毎日18:00 UTC（03:00 JST）と
-  手動実行時に SVG を生成します。`scripts/update-profile-3d-contrib.sh` で
-  同時更新を処理しながら、生成された変更を反映します。
+  手動実行時に SVG を生成します。`scripts/update-profile-3d-contrib.sh` で変更を反映します。
+  `profile-3d-contrib/*.svg` のみをステージしてコミットし、変更がなければ終了します。
+  `origin/main` を取得して rebase した後、`HEAD:main` に push します。
+  SVG 以外のステージ済み変更はコミットに含めず、生成中に main に入ったコミットを保持します。
+  rebase で競合した場合は処理が失敗し、リモートの main を強制的に上書きしません。
+  画像更新用のプルリクエストは作成しません。
 - その他のワークフローで、ライセンス年を更新し、プルリクエスト作成者を担当者に設定して、
   ラベルを付与します。
 
