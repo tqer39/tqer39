@@ -3,7 +3,7 @@
 <!-- cspell:ignore smol -->
 
 上流の修正版が公開されていない次の問題には、pnpm のパッチ機能で対策しています。
-`pnpm install --frozen-lockfile` でパッチを適用し、`just lint` と CI で回帰テストを実行します。
+`pnpm install --frozen-lockfile` でパッチを適用し、`mise run lint` と CI で回帰テストを実行します。
 
 | パッケージ | アドバイザリ | 対策 |
 | --- | --- | --- |

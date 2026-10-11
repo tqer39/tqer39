@@ -10,67 +10,68 @@ This is a GitHub profile README repository (username: tqer39). The README.md fil
 
 ### Quick Setup (Recommended)
 
-Bootstrap your development environment with a single command:
+Install mise first, then use its tasks for development (macOS or Linux):
 
 ```bash
-# Install Homebrew and all required tools
-make bootstrap
+# If Homebrew is already installed
+brew install mise
 
-# After bootstrap completes, setup prek hooks
-just setup
+# Otherwise, install mise using its standalone installer
+curl https://mise.run | sh
+export PATH="$HOME/.local/bin:$PATH"
+
+# Trust the repository configuration after reviewing it
+mise trust
+
+# Install Homebrew and dependencies from Brewfile
+mise run bootstrap
+
+# Reload your shell, then install tools, node dependencies, and Git hooks
+mise run setup
 ```
 
-This will:
+The bootstrap task requires mise to be installed first. It supports macOS and
+Linux; Windows bootstrap is not supported. On Linux it adds Homebrew's shell
+environment to existing `.zshrc` and `.bashrc` files. Follow Homebrew's printed
+shell setup instructions on macOS, then reload your shell.
 
-1. Install Homebrew (if not already installed)
-2. Install all dependencies from `Brewfile` (gh, just, actionlint, biome, prek, shellcheck, yamllint)
-3. Setup prek hooks for automatic code quality checks
+`Brewfile` manages gh and mise. `mise.toml` manages node, pnpm, lefthook,
+actionlint, shellcheck, and yamllint. Node-based linters are installed by pnpm.
 
 ### Manual Setup
 
-If you prefer manual installation:
+With mise and Homebrew already installed:
 
 ```bash
-# Install Homebrew (if not installed)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install dependencies
-brew bundle install
-
-# Setup prek hooks
-prek install
+mise trust
+mise run brew-bundle
+mise run setup
 ```
 
 ## Code Quality and Linting
 
-This repository uses **prek** (a faster, Rust-based alternative to pre-commit) to maintain code quality. All commits must pass these checks.
+This repository uses **lefthook** to maintain code quality. All commits must
+pass the checks in `lefthook.yml`.
 
-### About prek
-
-- **Performance**: 7-10x faster than pre-commit
-- **Disk space**: Uses only ~50% of the disk space compared to pre-commit
-- **Compatibility**: Fully compatible with existing `.pre-commit-config.yaml` files
-- **Zero dependencies**: Single binary with no Python or runtime dependencies
-
-### Running prek Hooks Locally
+### Running Hooks Locally
 
 ```bash
-# Run all linters
-just lint
+# Run all linters and regression tests
+mise run lint
 
-# Run specific hook
-just lint-hook <hook-name>
+# Run a specific lefthook command
+mise run lint-hook markdownlint
 
 # Fix common formatting issues
-just fix
+mise run fix
 
-# Format all files with Prettier
-just format
+# Format JSON files with Biome
+mise run format
 ```
 
 ### Available Linters and Checks
 
-The repository enforces the following via `.pre-commit-config.yaml`:
+The repository enforces the following via `lefthook.yml`:
 
 - **File integrity**: Large file detection (max 512KB), JSON/YAML validation, credential detection
 - **biome**: JSON file formatting (config: `biome.json`)
@@ -82,7 +83,6 @@ The repository enforces the following via `.pre-commit-config.yaml`:
 - **textlint**: Japanese text linting (config: `.textlintrc`)
   - Rules: `no-dropping-the-ra`, `ja-no-space-between-full-width`
 - **shellcheck**: Shell script linting
-- **prettier**: YAML formatting for GitHub Actions
 - **actionlint**: GitHub Actions workflow validation
 - **renovate-config-validator**: Renovate configuration validation
 
@@ -100,12 +100,12 @@ The repository uses `.editorconfig` with these settings:
 
 ### Automated Workflows
 
-1. **prek** (`.github/workflows/prek.yml`)
-   - Runs on: push to main, all PRs (except `feature/generate-github-profile-3d-contrib`)
-   - Executes all prek hooks with `--show-diff-on-failure`
-   - Uses `j178/prek-action@v1` for faster CI execution
+1. **lint** (`.github/workflows/lint.yml`)
+   - Runs on: push to main and all PRs
+   - Installs tools with mise and node dependencies with pnpm
+   - Executes `mise run lint`
    - Timeout: 10 minutes
-   - Note: Profile 3D contribution PRs are excluded from checks
+   - The workflow-result job requires lint to succeed
 
 2. **profile-3d-contrib** (`.github/workflows/profile-3d-contrib.yml`)
    - Runs on: Daily schedule (18:00 UTC / 03:00 JST), manual dispatch
@@ -176,25 +176,26 @@ When working in this repository (from `.github/copilot-instructions.md`):
 
 ```bash
 # Show all available commands
-just help
+mise run help
 
 # Check tool installation status
-just status
+mise run status
 
 # Run all linters before committing
-just lint
+mise run lint
 
 # Fix common formatting issues
-just fix
+mise run fix
 
-# Format all files
-just format
+# Format JSON files
+mise run format
 
 # Update Homebrew packages
-just update-brew
+mise run update-brew
 
-# Clean prek cache (if needed)
-just clean
+# Check Git status and recent commits
+mise run git-status
+mise run git-log
 ```
 
 ### Updating Profile Content
@@ -203,7 +204,7 @@ When editing `README.md`, ensure:
 
 - HTML elements are in the allowed list (see markdownlint config)
 - Spell check passes (add custom words to `cspell.json` if needed)
-- All prek hooks pass before committing
+- All lefthook hooks pass before committing
 
 ### Adding Custom Dictionary Words
 
@@ -224,25 +225,11 @@ Before pushing changes:
 
 ```bash
 # Run all quality checks
-just lint
+mise run lint
 
-# Or run prek directly
-prek run --all-files
+# Or run lefthook directly
+lefthook run pre-commit --all-files
 
 # View the README locally (in browser or Markdown viewer)
 # Note: GitHub-specific widgets won't render locally
 ```
-
-### Migrating from pre-commit to prek
-
-If you previously used pre-commit:
-
-```bash
-# Uninstall pre-commit hooks
-pre-commit uninstall
-
-# Install prek hooks
-just setup
-```
-
-The existing `.pre-commit-config.yaml` file works without modification.

@@ -5,3 +5,108 @@ lefthook = "2.2.1"
 yamllint = "1.38.0"
 actionlint = "1.7.12"
 shellcheck = "0.11.0"
+
+[tasks.help]
+description = "Show available tasks"
+alias = "default"
+run = "mise tasks ls"
+
+[tasks.check-os]
+description = "Detect the supported operating system"
+run = '''
+case "$(uname -s)" in
+  Darwin) echo "OS: macOS" ;;
+  Linux) echo "OS: Linux" ;;
+  *) echo "Unsupported OS: $(uname -s)" >&2; exit 1 ;;
+esac
+'''
+
+[tasks.install-brew]
+description = "Install Homebrew on macOS or Linux"
+depends = ["check-os"]
+run = "bash scripts/install-brew.sh"
+
+[tasks.brew-bundle]
+description = "Install dependencies listed in Brewfile"
+run = '''
+if ! command -v brew >/dev/null 2>&1; then
+  if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  elif [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  else
+    echo "Homebrew is not installed. Run 'mise run install-brew' first." >&2
+    exit 1
+  fi
+fi
+brew bundle install
+'''
+
+[tasks.bootstrap]
+description = "Install Homebrew and development dependencies"
+run = [
+  { task = "install-brew" },
+  { task = "brew-bundle" },
+  "echo \"Bootstrap complete. Reload your shell, then run 'mise run setup'.\"",
+]
+
+[tasks.setup]
+description = "Install development tools, node dependencies, and Git hooks"
+run = [
+  "mise install",
+  "pnpm install --frozen-lockfile",
+  "lefthook install",
+]
+
+[tasks.lint]
+description = "Run all linters and regression tests"
+run = "lefthook run pre-commit --all-files"
+
+[tasks.lint-hook]
+description = "Run a specific lefthook command"
+usage = 'arg "<hook>" help="Lefthook command name"'
+run = 'lefthook run pre-commit --commands "${usage_hook?}" --all-files'
+
+[tasks.fix]
+description = "Fix whitespace, line endings, and Markdown formatting"
+run = [
+  "lefthook run pre-commit --commands end-of-file-fixer --all-files",
+  "lefthook run pre-commit --commands trailing-whitespace --all-files",
+  "lefthook run pre-commit --commands mixed-line-ending --all-files",
+  "lefthook run pre-commit --commands markdownlint --all-files",
+]
+
+[tasks.format]
+description = "Format JSON files with Biome"
+run = "lefthook run pre-commit --commands biome-format --all-files"
+
+[tasks.status]
+description = "Show tool installation status"
+run = '''
+for tool in brew mise lefthook node pnpm gh; do
+  printf '\n%s:\n' "$tool"
+  if command -v "$tool" >/dev/null 2>&1; then
+    case "$tool" in
+      lefthook) lefthook version ;;
+      gh) gh --version | head -n1 ;;
+      *) "$tool" --version ;;
+    esac
+  else
+    echo "  Not installed"
+  fi
+done
+'''
+
+[tasks.update-brew]
+description = "Update and upgrade Homebrew packages"
+run = ["brew update", "brew upgrade"]
+
+[tasks.git-status]
+description = "Show Git working tree status"
+run = "git status --short"
+
+[tasks.git-log]
+description = "Show the ten most recent commits"
+run = "git log --oneline --graph --decorate -10"
