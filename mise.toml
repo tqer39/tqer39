@@ -57,30 +57,31 @@ description = "Install development tools, node dependencies, and Git hooks"
 run = [
   "mise install",
   "pnpm install --frozen-lockfile",
+  "pnpm run rules:generate",
   "lefthook install",
 ]
 
 [tasks.lint]
 description = "Run all linters and regression tests"
-run = "lefthook run pre-commit --all-files"
+run = "pnpm run lint"
 
 [tasks.lint-hook]
 description = "Run a specific lefthook command"
 usage = 'arg "<hook>" help="Lefthook command name"'
-run = 'lefthook run pre-commit --commands "${usage_hook?}" --all-files'
+run = 'lefthook run pre-commit --command "${usage_hook?}" --all-files'
 
 [tasks.fix]
 description = "Fix whitespace, line endings, and Markdown formatting"
 run = [
-  "lefthook run pre-commit --commands end-of-file-fixer --all-files",
-  "lefthook run pre-commit --commands trailing-whitespace --all-files",
-  "lefthook run pre-commit --commands mixed-line-ending --all-files",
-  "lefthook run pre-commit --commands markdownlint --all-files",
+  "lefthook run pre-commit --command end-of-file-fixer --all-files",
+  "lefthook run pre-commit --command trailing-whitespace --all-files",
+  "lefthook run pre-commit --command mixed-line-ending --all-files",
+  "lefthook run pre-commit --command markdownlint --all-files",
 ]
 
 [tasks.format]
-description = "Format JSON files with Biome"
-run = "lefthook run pre-commit --commands biome-format --all-files"
+description = "Format JSON and JavaScript/TypeScript files with Oxfmt"
+run = "pnpm run format"
 
 [tasks.status]
 description = "Show tool installation status"
@@ -110,3 +111,11 @@ run = "git status --short"
 [tasks.git-log]
 description = "Show the ten most recent commits"
 run = "git log --oneline --graph --decorate -10"
+
+[tasks.rules]
+description = "Generate AI instructions from shared rules"
+run = "pnpm run rules:generate"
+
+[tasks.rules-check]
+description = "Check generated AI instructions for drift"
+run = "pnpm run rules:check"

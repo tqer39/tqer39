@@ -1,235 +1,109 @@
-# CLAUDE.md
+# リポジトリの開発指針
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このリポジトリは、`tqer39` の GitHub プロフィール README を管理します。
+`README.md` は公開プロフィール、`src/icon/` は画像素材、
+`profile-3d-contrib/` は生成されたコントリビューショングラフの保存先です。
 
-## Repository Purpose
+## AI 共通の指示
 
-This is a GitHub profile README repository (username: tqer39). The README.md file is displayed on the GitHub profile page and contains profile information, skills, activity statistics, and visual elements.
+常に日本語で回答してください。
 
-## Getting Started
+- 編集前に、リポジトリの指示と関連コードを読んでください。
+- 無関係なユーザーの変更を保持し、変更範囲を依頼内容に絞ってください。
+- 複雑な作業では、期待する動作と検証条件を明確にし、実装から検証まで完了させてください。
+- バージョンに依存する動作は、現在の一次情報を確認してください。
+  検証済みの事実と推測を区別してください。
+- 既存のコーディング規約に従い、必要なコメントやドキュメントを追加してください。
+- 認証情報や機密情報をコードに含めないでください。
+- 外部コードやライブラリを利用する場合は、ライセンスを確認し、必要に応じて明記してください。
+- AI の提案は利用前に確認し、不適切な内容は修正・削除してください。
+- Copilot の提案を利用した場合は、プルリクエストにその旨を記載してください。
+- 意味のある動作変更には回帰テストを追加してください。
+  実装をなぞるだけのテストは追加しないでください。
+- 最終差分をレビューし、回帰・要件漏れ・不要な変更がないか確認してください。
+  検証結果と残る制約を正確に報告してください。
 
-### Quick Setup (Recommended)
+## セットアップとコマンド
 
-Install mise first, then use its tasks for development (macOS or Linux):
+macOS または Linux では、mise を先にインストールします。
+Homebrew がある場合は次のコマンドを実行します。
 
 ```bash
-# If Homebrew is already installed
 brew install mise
+```
 
-# Otherwise, install mise using its standalone installer
+Homebrew がない場合は、代わりにスタンドアロン版をインストールします。
+
+```bash
 curl https://mise.run | sh
 export PATH="$HOME/.local/bin:$PATH"
+```
 
-# Trust the repository configuration after reviewing it
+どちらか一方で mise をインストールした後、次のコマンドを実行します。
+
+```bash
 mise trust
-
-# Install Homebrew and dependencies from Brewfile
 mise run bootstrap
-
-# Reload your shell, then install tools, node dependencies, and Git hooks
+# Homebrew の案内に従ってシェル設定を読み直してから実行
 mise run setup
 ```
 
-The bootstrap task requires mise to be installed first. It supports macOS and
-Linux; Windows bootstrap is not supported. On Linux it adds Homebrew's shell
-environment to existing `.zshrc` and `.bashrc` files. Follow Homebrew's printed
-shell setup instructions on macOS, then reload your shell.
-
-`Brewfile` manages gh and mise. `mise.toml` manages node, pnpm, lefthook,
-actionlint, shellcheck, and yamllint. Node-based linters are installed by pnpm.
-
-### Manual Setup
-
-With mise and Homebrew already installed:
+`mise run bootstrap` で Homebrew と `Brewfile` のツールをインストールします。
+Windows での bootstrap は対象外です。Linux では、既存の `.zshrc` と `.bashrc` に
+Homebrew のシェル設定を追加します。
+`mise run setup` で `mise.toml` に指定されたツールと pnpm の依存関係をインストールし、
+AI 向けの指示を生成して Lefthook のフックを設定します。
+Node.js の開発ツールは、各プラットフォームで共通のリポジトリ内 pnpm 依存関係として管理します。
 
 ```bash
-mise trust
-mise run brew-bundle
-mise run setup
+mise run help              # 利用できるコマンドを表示
+mise run status            # ツールのインストール状況を確認
+mise run lint              # 全チェックを実行。修正が発生したら失敗し、ステージ状態は保持
+mise run lint-hook oxlint  # 指定したフックのみ実行
+mise run fix               # 空白と Markdown の整形を修正
+mise run format            # Oxfmt で JSON と JavaScript/TypeScript を整形
+mise run rules             # AI 向けの指示を生成
+mise run rules-check       # AI 向けの指示が同期されているか確認
 ```
 
-## Code Quality and Linting
+## 品質チェック
 
-This repository uses **lefthook** to maintain code quality. All commits must
-pass the checks in `lefthook.yml`.
+- Lefthook（`lefthook.yml`）でローカルのフックと GitHub Actions のチェックを実行します。
+- Oxlint（`.oxlintrc.json`）で CommonJS のテストを含む JavaScript/TypeScript を検証します。
+- Oxfmt（`.oxfmtrc.json`）で JSON、JSONC、JSON5、JavaScript/TypeScript を整形します。
+  Markdown、YAML、画像素材、依存関係のパッチ、pnpm のロックファイルは対象外です。
+- yamllint、actionlint、shellcheck で YAML、ワークフロー、シェルスクリプトを検証します。
+- markdownlint-cli2、textlint、cspell でドキュメントとスペルを検証します。
+- ファイルの整合性を確認するフックで、サイズ、JSON 構文、認証情報、空白を検証します。
+- 回帰テストで、依存関係のパッチ、ワークフローの結果、コントリビューショングラフの更新、
+  AI ルールの同期ずれ、不正な lint・整形入力の検出を検証します。
+- `renovate-config-validator` で Renovate の設定を検証します。
 
-### Running Hooks Locally
+`.editorconfig` に従い、UTF-8、LF、スペース2個のインデント、行末の空白なし、
+末尾の改行ありで記述してください。プロフィールの更新時は、`.markdownlint.json` で
+許可された HTML 要素を使用し、必要に応じて `cspell.json` に辞書の単語を追加してください。
+GitHub 固有のウィジェットは、ローカルでは表示されない場合があります。
 
-```bash
-# Run all linters and regression tests
-mise run lint
+## rulesync の運用
 
-# Run a specific lefthook command
-mise run lint-hook markdownlint
+AI 共通の指示は、正本の `.rulesync/rules/overview.md` を編集してください。
+`rulesync.jsonc` の `rules` 機能で、Claude Code、Codex、Copilot、Devin を対象に指定しています。
+正本の編集後は `pnpm run rules:generate` を実行し、生成ファイルもコミットしてください。
+生成された `CLAUDE.md`、`AGENTS.md`、`.github/copilot-instructions.md` は直接編集しないでください。
+Codex と Devin は `AGENTS.md` を共有します。`pnpm run rules:check` で同期ずれを検出します。
 
-# Fix common formatting issues
-mise run fix
+## ワークフローと依存関係
 
-# Format JSON files with Biome
-mise run format
-```
+- `.github/workflows/lint.yml` でツールと依存関係をインストールし、`mise run lint` を実行します。
+  `workflow-result` ジョブで lint の結果を確認します。
+- `.github/workflows/profile-3d-contrib.yml` で、毎日18:00 UTC（03:00 JST）と
+  手動実行時に SVG を生成します。`scripts/update-profile-3d-contrib.sh` で
+  同時更新を処理しながら、生成された変更を反映します。
+- その他のワークフローで、ライセンス年を更新し、プルリクエスト作成者を担当者に設定して、
+  ラベルを付与します。
 
-### Available Linters and Checks
-
-The repository enforces the following via `lefthook.yml`:
-
-- **File integrity**: Large file detection (max 512KB), JSON/YAML validation, credential detection
-- **biome**: JSON file formatting (config: `biome.json`)
-- **yamllint**: YAML file linting (config: `.yamllint`)
-- **cspell**: Spell checking (config: `cspell.json`)
-- **markdownlint-cli2**: Markdown linting (config: `.markdownlint.json`)
-  - Allows HTML elements: `img`, `details`, `summary`, `hr`, `p`, `style`, `div`
-  - Disables: MD013 (line length), MD024 (duplicate headings), MD030 (list spacing), MD041 (first line heading)
-- **textlint**: Japanese text linting (config: `.textlintrc`)
-  - Rules: `no-dropping-the-ra`, `ja-no-space-between-full-width`
-- **shellcheck**: Shell script linting
-- **actionlint**: GitHub Actions workflow validation
-- **renovate-config-validator**: Renovate configuration validation
-
-### Editor Configuration
-
-The repository uses `.editorconfig` with these settings:
-
-- Charset: UTF-8
-- Line endings: LF
-- Indent: 2 spaces
-- Trim trailing whitespace
-- Insert final newline
-
-## GitHub Actions Workflows
-
-### Automated Workflows
-
-1. **lint** (`.github/workflows/lint.yml`)
-   - Runs on: push to main and all PRs
-   - Installs tools with mise and node dependencies with pnpm
-   - Executes `mise run lint`
-   - Timeout: 10 minutes
-   - The workflow-result job requires lint to succeed
-
-2. **profile-3d-contrib** (`.github/workflows/profile-3d-contrib.yml`)
-   - Runs on: Daily schedule (18:00 UTC / 03:00 JST), manual dispatch
-   - Generates 3D contribution graph using `yoshi389111/github-profile-3d-contrib`
-   - Auto-creates PR and merges to main branch
-   - Output location: `profile-3d-contrib/` directory
-
-3. **update-license-year** (`.github/workflows/update-license-year.yml`)
-   - Automatically updates copyright year in files
-
-4. **auto-assign** (`.github/workflows/auto-assign.yml`)
-   - Auto-assigns PR author as assignee
-
-5. **labeler** (`.github/workflows/labeler.yml`)
-   - Auto-applies labels to PRs
-
-## Dependency Management
-
-Renovate is configured via `renovate.json5` using the shared config with auto-merge enabled:
-
-```json5
-{
-  "extends": ["github>tqer39/renovate-config"],
-  "platformAutomerge": true,
-  "automerge": true,
-  "automergeType": "pr"
-}
-```
-
-Renovate will automatically create PRs for dependency updates and merge them when:
-
-- All CI checks pass
-- The PR is approved (if required by branch protection rules)
-
-## Development Guidelines
-
-### From Copilot Instructions
-
-When working in this repository (from `.github/copilot-instructions.md`):
-
-1. **コーディングスタイル (Coding Style)**
-   - Follow existing project coding conventions and formatting
-   - Actively use comments and documentation
-
-2. **セキュリティ (Security)**
-   - Follow security best practices
-   - Never include credentials or sensitive information in code
-
-3. **ライセンスと著作権 (License and Copyright)**
-   - Verify licenses when using external code or libraries
-   - Document license information when necessary
-
-4. **PR・レビュー (PR & Review)**
-   - Always verify content before using AI suggestions
-   - Modify as necessary
-   - Document when AI suggestions are used in PRs
-
-## Key Files
-
-- `README.md`: Main profile page content (contains HTML, images, and GitHub stats widgets)
-- `src/icon/`: Contains icon images used in the profile
-- `profile-3d-contrib/`: Auto-generated 3D contribution graphs
-- `.github/workflows/`: Automated GitHub Actions workflows
-
-## Common Tasks
-
-### Development Workflow
-
-```bash
-# Show all available commands
-mise run help
-
-# Check tool installation status
-mise run status
-
-# Run all linters before committing
-mise run lint
-
-# Fix common formatting issues
-mise run fix
-
-# Format JSON files
-mise run format
-
-# Update Homebrew packages
-mise run update-brew
-
-# Check Git status and recent commits
-mise run git-status
-mise run git-log
-```
-
-### Updating Profile Content
-
-When editing `README.md`, ensure:
-
-- HTML elements are in the allowed list (see markdownlint config)
-- Spell check passes (add custom words to `cspell.json` if needed)
-- All lefthook hooks pass before committing
-
-### Adding Custom Dictionary Words
-
-To add words to the spell checker, edit `cspell.json`:
-
-```json
-{
-  "words": [
-    "newword1",
-    "newword2"
-  ]
-}
-```
-
-### Testing Changes Locally
-
-Before pushing changes:
-
-```bash
-# Run all quality checks
-mise run lint
-
-# Or run lefthook directly
-lefthook run pre-commit --all-files
-
-# View the README locally (in browser or Markdown viewer)
-# Note: GitHub-specific widgets won't render locally
-```
+`renovate.json5` は `github>tqer39/renovate-config` を継承します。
+共通のスケジュール、自動マージ方針、ラベル、セキュリティ設定は共通設定で管理し、
+このリポジトリには固有の例外だけを記述してください。
+開発ツールの更新時は、`pnpm-workspace.yaml`、`pnpm-lock.yaml`、`patches/` にある
+セキュリティ上の上書き設定と依存関係のパッチを保持してください。
