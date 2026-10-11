@@ -58,13 +58,20 @@ Node.js の開発ツールは、各プラットフォームで共通のリポジ
 ```bash
 mise run help              # 利用できるコマンドを表示
 mise run status            # ツールのインストール状況を確認
-mise run lint              # 全チェックを実行。修正が発生したら失敗し、ステージ状態は保持
+mise run lint              # lint のみ実行。修正が発生したら失敗し、ステージ状態は保持
+mise run test              # 回帰テストのみ実行
+mise run check             # lint と全回帰テストを実行
 mise run lint-hook oxlint  # 指定したフックのみ実行
 mise run fix               # 空白と Markdown の整形を修正
 mise run format            # Oxfmt で JSON と JavaScript/TypeScript を整形
 mise run rules             # AI 向けの指示を生成
 mise run rules-check       # AI 向けの指示が同期されているか確認
 ```
+
+テストは `tests/` 直下の `.cjs` と `.sh` を共通の実行スクリプトで順に実行します。
+追加したテストも自動で対象になります。`mise run setup` の後、`mise run test` で実行できます。
+コミット時は Lefthook から同じテストを実行し、CI と PR 前の全検証には `mise run check` を使用します。
+lint またはテストが失敗した場合、全検証も失敗します。
 
 ## 品質チェック
 
@@ -94,7 +101,7 @@ Codex と Devin は `AGENTS.md` を共有します。`pnpm run rules:check` で�
 
 ## ワークフローと依存関係
 
-- `.github/workflows/lint.yml` でツールと依存関係をインストールし、`mise run lint` を実行します。
+- `.github/workflows/lint.yml` でツールと依存関係をインストールし、`mise run check` を実行します。
   `workflow-result` ジョブで lint の結果を確認します。
 - `.github/workflows/profile-3d-contrib.yml` で、毎日18:00 UTC（03:00 JST）と
   手動実行時に SVG を生成します。`scripts/update-profile-3d-contrib.sh` で

@@ -62,8 +62,16 @@ run = [
 ]
 
 [tasks.lint]
-description = "Run all linters and regression tests"
+description = "Run all linters without regression tests"
 run = "pnpm run lint"
+
+[tasks.test]
+description = "Run all regression tests"
+run = "pnpm test"
+
+[tasks.check]
+description = "Run all linters and regression tests"
+run = "pnpm run check"
 
 [tasks.lint-hook]
 description = "Run a specific lefthook command"
