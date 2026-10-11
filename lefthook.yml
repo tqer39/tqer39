@@ -1,7 +1,8 @@
 # Lefthook configuration.
 # See https://lefthook.dev/configuration/ for details.
 pre-commit:
-  parallel: true
+  # File-writing hooks must finish before other hooks read the same files.
+  parallel: false
   commands:
     profile-3d-contrib-test:
       run: node tests/profile-3d-contrib.cjs

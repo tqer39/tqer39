@@ -10,8 +10,8 @@
 | sprintf-js 1.0.3 | [GHSA-hp3w-g68c-fv3c](https://github.com/advisories/GHSA-hp3w-g68c-fv3c) | 数値精度を ECMAScript の許容範囲に収め、過大な指定による例外を防ぐ |
 | braces 3.0.3 | [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) | パターン解析時に入れ子の深さを 64 までに制限し、再帰処理によるスタックオーバーフローを防ぐ |
 
-監査はパッチ内容を判定できないため、この 2 件だけを `package.json` の
-`pnpm.auditConfig.ignoreGhsas` に登録しています。上流の修正版が公開されたら、
+監査はパッチ内容を判定できないため、この 2 件だけを `pnpm-workspace.yaml` の
+`auditConfig.ignoreGhsas` に登録しています。上流の修正版が公開されたら、
 依存バージョンを更新してパッチと監査の例外を削除してください。
 
 `tests/dependency-security.cjs` は、リンターが実際に参照する依存チェーンを使い、

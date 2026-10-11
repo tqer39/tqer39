@@ -87,5 +87,5 @@ Codex と Devin は `AGENTS.md` を共有します。`pnpm run rules:check` で�
 `renovate.json5` は `github>tqer39/renovate-config` を継承します。
 共通のスケジュール、自動マージ方針、ラベル、セキュリティ設定は共通設定で管理し、
 このリポジトリには固有の例外だけを記述してください。
-開発ツールの更新時は、`package.json`、`pnpm-lock.yaml`、`patches/` にある
+開発ツールの更新時は、`pnpm-workspace.yaml`、`pnpm-lock.yaml`、`patches/` にある
 セキュリティ上の上書き設定と依存関係のパッチを保持してください。

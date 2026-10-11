@@ -9,14 +9,20 @@ const remote = path.join(root, "remote.git");
 const work = path.join(root, "work");
 const peer = path.join(root, "peer");
 
+// Git hooks export repository paths; subprocesses must use their own test repos.
+const env = { ...process.env };
+const localEnv = spawnSync("git", ["rev-parse", "--local-env-vars"], { encoding: "utf8" });
+assert.equal(localEnv.status, 0, localEnv.stderr);
+for (const name of localEnv.stdout.trim().split("\n")) delete env[name];
+
 function git(cwd, ...args) {
-  const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+  const result = spawnSync("git", args, { cwd, env, encoding: "utf8" });
   assert.equal(result.status, 0, result.stderr);
   return result.stdout.trim();
 }
 
 function update(expected = 0) {
-  const result = spawnSync("bash", [script], { cwd: work, encoding: "utf8" });
+  const result = spawnSync("bash", [script], { cwd: work, env, encoding: "utf8" });
   if (expected === 0) assert.equal(result.status, 0, result.stderr);
   else assert.notEqual(result.status, 0, "Conflicting updates must fail.");
 }
