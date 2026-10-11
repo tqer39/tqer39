@@ -4,12 +4,28 @@
   "description": "Development tool dependencies for tqer39 profile (run via lefthook).",
   "packageManager": "pnpm@10.34.5",
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.5.14",
     "cspell": "10.3.4",
-    "markdownlint-cli2": "0.22.1",
-    "textlint": "15.5.4",
+    "markdownlint-cli2": "0.23.3",
+    "textlint": "15.8.0",
     "textlint-filter-rule-comments": "1.3.0",
     "textlint-rule-preset-ja-technical-writing": "12.0.2",
-    "textlint-rule-preset-smarthr": "1.37.0"
+    "textlint-rule-preset-smarthr": "1.38.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "smol-toml@<1.9.0": "1.9.0",
+      "katex@<0.18.2": "0.18.2"
+    },
+    "patchedDependencies": {
+      "sprintf-js@1.0.3": "patches/sprintf-js@1.0.3.patch",
+      "braces@3.0.3": "patches/braces@3.0.3.patch"
+    },
+    "auditConfig": {
+      "ignoreGhsas": [
+        "GHSA-hp3w-g68c-fv3c",
+        "GHSA-vfj7-8cjw-p6xm"
+      ]
+    }
   }
 }

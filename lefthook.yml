@@ -5,6 +5,8 @@ pre-commit:
   commands:
     workflow-result-test:
       run: bash tests/workflow-result.sh
+    dependency-security-test:
+      run: node tests/dependency-security.cjs
     # ── セーフティ系 (pre-commit-hooks 相当) ──
     check-added-large-files:
       exclude:
