@@ -4,6 +4,8 @@ pre-commit:
   # File-writing hooks must finish before other hooks read the same files.
   parallel: false
   commands:
+    mise-tasks-test:
+      run: node tests/mise-tasks.cjs
     profile-3d-contrib-test:
       run: node tests/profile-3d-contrib.cjs
     workflow-result-test:

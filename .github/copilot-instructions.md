@@ -25,21 +25,45 @@
 
 ## セットアップとコマンド
 
-macOS または Linux では、`make bootstrap` で Homebrew と `Brewfile` のツールをインストールします。
-`just setup` で `mise.toml` に指定されたツールと pnpm の依存関係をインストールし、
+macOS または Linux では、mise を先にインストールします。
+Homebrew がある場合は次のコマンドを実行します。
+
+```bash
+brew install mise
+```
+
+Homebrew がない場合は、代わりにスタンドアロン版をインストールします。
+
+```bash
+curl https://mise.run | sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+どちらか一方で mise をインストールした後、次のコマンドを実行します。
+
+```bash
+mise trust
+mise run bootstrap
+# Homebrew の案内に従ってシェル設定を読み直してから実行
+mise run setup
+```
+
+`mise run bootstrap` で Homebrew と `Brewfile` のツールをインストールします。
+Windows での bootstrap は対象外です。Linux では、既存の `.zshrc` と `.bashrc` に
+Homebrew のシェル設定を追加します。
+`mise run setup` で `mise.toml` に指定されたツールと pnpm の依存関係をインストールし、
 AI 向けの指示を生成して Lefthook のフックを設定します。
 Node.js の開発ツールは、各プラットフォームで共通のリポジトリ内 pnpm 依存関係として管理します。
 
 ```bash
-just help              # 利用できるコマンドを表示
-just status            # ツールのインストール状況を確認
-mise run lint          # 全チェックを実行。修正が発生したら失敗し、ステージ状態は保持
-just lint              # 整形の修正を含め、すべての Lefthook チェックを実行
-just lint-hook oxlint  # 指定したフックのみ実行
-just fix               # 空白と Markdown の整形を修正
-just format            # Oxfmt で JSON と JavaScript/TypeScript を整形
-just rules             # AI 向けの指示を生成
-just rules-check       # AI 向けの指示が同期されているか確認
+mise run help              # 利用できるコマンドを表示
+mise run status            # ツールのインストール状況を確認
+mise run lint              # 全チェックを実行。修正が発生したら失敗し、ステージ状態は保持
+mise run lint-hook oxlint  # 指定したフックのみ実行
+mise run fix               # 空白と Markdown の整形を修正
+mise run format            # Oxfmt で JSON と JavaScript/TypeScript を整形
+mise run rules             # AI 向けの指示を生成
+mise run rules-check       # AI 向けの指示が同期されているか確認
 ```
 
 ## 品質チェック
@@ -70,7 +94,7 @@ Codex と Devin は `AGENTS.md` を共有します。`pnpm run rules:check` で�
 
 ## ワークフローと依存関係
 
-- `.github/workflows/lint.yml` でツールと依存関係をインストールし、Lefthook を実行します。
+- `.github/workflows/lint.yml` でツールと依存関係をインストールし、`mise run lint` を実行します。
   `workflow-result` ジョブで lint の結果を確認します。
 - `.github/workflows/profile-3d-contrib.yml` で、毎日18:00 UTC（03:00 JST）と
   手動実行時に SVG を生成します。`scripts/update-profile-3d-contrib.sh` で
