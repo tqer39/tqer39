@@ -1,0 +1,15 @@
+diff --git a/lib/parse.js b/lib/parse.js
+index 3a6988e629f52aee6609dc5ec290a5e9ff47cecb..72251ff4e003551e79ee0de5d70884c7f88d3dba 100644
+--- a/lib/parse.js
++++ b/lib/parse.js
+@@ -142,6 +142,10 @@ const parse = (input, options = {}) => {
+      * Parentheses
+      */
+
++    if ((value === CHAR_LEFT_PARENTHESES || value === CHAR_LEFT_CURLY_BRACE) && stack.length > 64) {
++      throw new SyntaxError('Pattern nesting exceeds the maximum depth of 64');
++    }
++
+     if (value === CHAR_LEFT_PARENTHESES) {
+       block = push({ type: 'paren', nodes: [] });
+       stack.push(block);
