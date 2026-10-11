@@ -20,7 +20,9 @@
     "lint:js": "oxlint --deny-warnings .",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "lint": "lefthook run pre-commit --all-files --no-stage-fixed --fail-on-changes",
-    "test:tooling": "node tests/tooling.cjs"
+    "lint": "LEFTHOOK_EXCLUDE=tests lefthook run pre-commit --all-files --no-stage-fixed --fail-on-changes",
+    "test:tooling": "node tests/tooling.cjs",
+    "test": "node scripts/run-tests.cjs",
+    "check": "pnpm run lint && pnpm test"
   }
 }

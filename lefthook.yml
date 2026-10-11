@@ -4,20 +4,11 @@ pre-commit:
   # File-writing hooks must finish before other hooks read the same files.
   parallel: false
   commands:
-    lint-fixes-test:
-      run: node tests/lint-fixes.cjs
-    mise-tasks-test:
-      run: node tests/mise-tasks.cjs
-    profile-3d-contrib-test:
-      run: node tests/profile-3d-contrib.cjs
-    workflow-result-test:
-      run: bash tests/workflow-result.sh
-    dependency-security-test:
-      run: node tests/dependency-security.cjs
+    regression-tests:
+      tags: tests
+      run: pnpm test
     rulesync-check:
       run: pnpm run rules:check
-    tooling-test:
-      run: pnpm run test:tooling
     oxlint:
       glob: "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"
       run: pnpm exec oxlint --deny-warnings {staged_files}

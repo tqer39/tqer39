@@ -94,6 +94,12 @@ try {
   success(run("lint"));
   assert.deepEqual(commands(), ["pnpm <run> <lint>"]);
   assert.notEqual(run("lint", [], { TEST_FAIL: "7" }).status, 0);
+  success(run("test"));
+  assert.deepEqual(commands(), ["pnpm <test>"]);
+  assert.notEqual(run("test", [], { TEST_FAIL: "7" }).status, 0);
+  success(run("check"));
+  assert.deepEqual(commands(), ["pnpm <run> <check>"]);
+  assert.notEqual(run("check", [], { TEST_FAIL: "7" }).status, 0);
   assert.notEqual(run("lint-hook").status, 0);
   assert.deepEqual(commands(), []);
   const hook = "markdownlint; touch injected";
