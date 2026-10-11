@@ -4,18 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  smol-toml@<1.9.0: 1.9.0
-  katex@<0.18.2: 0.18.9
-
-patchedDependencies:
-  braces@3.0.3:
-    hash: a71a1ad07037d4cb5d12fca41839ab2a3b93563161ee18aefcac23edd33b09e0
-    path: patches/braces@3.0.3.patch
-  sprintf-js@1.0.3:
-    hash: e7a86f1c3480b46ca8da26eb71ee42755a3b47b7963782d8f153c30832e5ebbd
-    path: patches/sprintf-js@1.0.3.patch
-
 importers:
 
   .:
@@ -695,6 +683,10 @@ packages:
     resolution: {integrity: sha512-z67u4ZhzCL/Tydu1lJARtEZYWbWaN7oYLHbsuzocr6y4N6WZAagG3RQ4FW61V1/0+jImpj293XfrcYnd1qxtPg==}
     engines: {node: '>=22.12.0'}
 
+  commander@8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+
   commandpost@1.4.0:
     resolution: {integrity: sha512-aE2Y4MTFJ870NuB/+2z1cXBhSBBzRydVVjzhFC4gtenEhpnj15yu0qptWGJsO9YGrcPZ3ezX8AWb1VA391MKpQ==}
 
@@ -1278,8 +1270,8 @@ packages:
     resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
     engines: {node: '>=0.10.0'}
 
-  katex@0.18.9:
-    resolution: {integrity: sha512-8ad9RyoKsb/g8/yLFE+KAlP+DhbCTRUNi/V9XGsxn0R+trJJltNwzcDNo0q/DEkOy5fQUQTAQyCXCYSE+OakTQ==}
+  katex@0.16.47:
+    resolution: {integrity: sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==}
     hasBin: true
 
   keyv@5.6.0:
@@ -1759,6 +1751,10 @@ packages:
 
   slide@1.1.6:
     resolution: {integrity: sha512-NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==}
+
+  smol-toml@1.8.0:
+    resolution: {integrity: sha512-kCZr2V3ch9i00x8zXRhjUNVcjG9ijES5dDudkXvUVCT5QlJNQWElSJdZqyPemffHoLNUYwOcou0Fy+ojN0uHSQ==}
+    engines: {node: '>= 18'}
 
   smol-toml@1.9.0:
     resolution: {integrity: sha512-hpd+HLON7HdZXqYchMM/+LaTTbdK0AU3NngIJ4KVyWbY9bfQqdL9cD+4yf6dUoU2Ap4VsU0JkQi6FxAI1B2mXQ==}
@@ -2718,7 +2714,7 @@ snapshots:
 
   argparse@1.0.10:
     dependencies:
-      sprintf-js: 1.0.3(patch_hash=e7a86f1c3480b46ca8da26eb71ee42755a3b47b7963782d8f153c30832e5ebbd)
+      sprintf-js: 1.0.3
 
   argparse@2.0.1: {}
 
@@ -2765,7 +2761,7 @@ snapshots:
     dependencies:
       balanced-match: 4.0.4
 
-  braces@3.0.3(patch_hash=a71a1ad07037d4cb5d12fca41839ab2a3b93563161ee18aefcac23edd33b09e0):
+  braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
 
@@ -2835,6 +2831,8 @@ snapshots:
   comma-separated-tokens@1.0.8: {}
 
   commander@15.0.0: {}
+
+  commander@8.3.0: {}
 
   commandpost@1.4.0: {}
 
@@ -3506,9 +3504,9 @@ snapshots:
 
   jsonpointer@5.0.1: {}
 
-  katex@0.18.9:
+  katex@0.16.47:
     dependencies:
-      commander: 15.0.0
+      commander: 8.3.0
 
   keyv@5.6.0:
     dependencies:
@@ -3590,7 +3588,7 @@ snapshots:
       markdownlint: 0.41.1
       markdownlint-cli2-formatter-default: 0.0.6(markdownlint-cli2@0.23.3)
       micromatch: 4.0.8
-      smol-toml: 1.9.0
+      smol-toml: 1.8.0
     transitivePeerDependencies:
       - supports-color
 
@@ -3799,7 +3797,7 @@ snapshots:
     dependencies:
       '@types/katex': 0.16.8
       devlop: 1.1.0
-      katex: 0.18.9
+      katex: 0.16.47
       micromark-factory-space: 2.1.0
       micromark-util-character: 2.1.1
       micromark-util-symbol: 2.0.1
@@ -3921,7 +3919,7 @@ snapshots:
 
   micromatch@4.0.8:
     dependencies:
-      braces: 3.0.3(patch_hash=a71a1ad07037d4cb5d12fca41839ab2a3b93563161ee18aefcac23edd33b09e0)
+      braces: 3.0.3
       picomatch: 2.3.2
 
   minimatch@10.2.6:
@@ -4245,6 +4243,8 @@ snapshots:
 
   slide@1.1.6: {}
 
+  smol-toml@1.8.0: {}
+
   smol-toml@1.9.0: {}
 
   space-separated-tokens@1.1.5: {}
@@ -4263,7 +4263,7 @@ snapshots:
 
   spdx-license-ids@3.0.24: {}
 
-  sprintf-js@1.0.3(patch_hash=e7a86f1c3480b46ca8da26eb71ee42755a3b47b7963782d8f153c30832e5ebbd): {}
+  sprintf-js@1.0.3: {}
 
   stop-iteration-iterator@1.1.0:
     dependencies:
