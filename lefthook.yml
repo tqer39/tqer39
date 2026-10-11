@@ -3,6 +3,8 @@
 pre-commit:
   parallel: true
   commands:
+    workflow-result-test:
+      run: bash tests/workflow-result.sh
     # ── セーフティ系 (pre-commit-hooks 相当) ──
     check-added-large-files:
       exclude:
