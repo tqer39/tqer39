@@ -2,7 +2,7 @@
   "name": "tqer39-devtools",
   "private": true,
   "description": "Development tool dependencies for tqer39 profile (run via lefthook).",
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@10.34.6",
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
     "cspell": "10.3.4",
