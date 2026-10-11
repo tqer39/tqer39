@@ -2,6 +2,9 @@
 # Normalize line endings to LF. --fix=lf is required.
 set -euo pipefail
 
+# shellcheck source=scripts/lint/text-file.sh
+source "$(dirname "${BASH_SOURCE[0]}")/text-file.sh"
+
 mode=""
 files=()
 for arg in "$@"; do
@@ -17,11 +20,8 @@ if [[ "$mode" != "lf" ]]; then
 fi
 
 for f in "${files[@]}"; do
-  [[ -f "$f" ]] || continue
-  grep -Iq . "$f" || continue
+  is_text_file "$f" || continue
   if grep -q $'\r' "$f"; then
-    tr -d '\r' <"$f" >"$f.tmp"
-    cat "$f.tmp" >"$f"
-    rm -f "$f.tmp"
+    rewrite_text_file "$f" tr -d '\r'
   fi
 done
