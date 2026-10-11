@@ -1,0 +1,14 @@
+---
+# cspell:ignore smol katex
+packages:
+  - "."
+overrides:
+  "smol-toml@<1.9.0": "1.9.1"
+  "katex@<0.18.2": "0.18.9"
+patchedDependencies:
+  "sprintf-js@1.0.3": "patches/sprintf-js@1.0.3.patch"
+  "braces@3.0.3": "patches/braces@3.0.3.patch"
+auditConfig:
+  ignoreGhsas:
+    - GHSA-hp3w-g68c-fv3c
+    - GHSA-vfj7-8cjw-p6xm
