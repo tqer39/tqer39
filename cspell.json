@@ -8,7 +8,8 @@
     "pnpm-lock.yaml",
     "package.json",
     "pyproject.toml",
-    "**/*.svg"
+    "**/*.svg",
+    "patches/*.patch"
   ],
   "words": [
     "aahl",
@@ -29,7 +30,6 @@
     "awscli",
     "awslabs",
     "bggradient",
-    "biome",
     "bobheadxi",
     "buildscript",
     "charliermarsh",
@@ -200,6 +200,14 @@
     "xsel",
     "yoshi",
     "ZDHARMA",
-    "zinit"
+    "zinit",
+    "claudecode",
+    "codexcli",
+    "Devin",
+    "oxfmt",
+    "oxfmtrc",
+    "oxlint",
+    "oxlintrc",
+    "rulesync"
   ]
 }
