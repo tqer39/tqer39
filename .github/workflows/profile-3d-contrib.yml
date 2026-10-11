@@ -42,7 +42,8 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         id: cpr
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
+          add-paths: profile-3d-contrib/*.svg
           branch: "${{ env.BRANCH_NAME }}"
           base: main
           title: "Update profile-3d-contrib"
@@ -59,6 +60,4 @@ jobs:
             exit 1
           fi
 
-          # NOTE: 先にマージしてから Approve すると auto merge によってマージされる
           gh pr merge -R "${{ github.repository }}" --squash --auto "$PR_NUMBER"
-          gh pr review "$PR_NUMBER" --approve
