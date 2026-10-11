@@ -119,10 +119,7 @@ The repository uses `.editorconfig` with these settings:
 4. **auto-assign** (`.github/workflows/auto-assign.yml`)
    - Auto-assigns PR author as assignee
 
-5. **generate-pr-description** (`.github/workflows/generate-pr-description.yml`)
-   - Auto-generates PR descriptions
-
-6. **labeler** (`.github/workflows/labeler.yml`)
+5. **labeler** (`.github/workflows/labeler.yml`)
    - Auto-applies labels to PRs
 
 ## Dependency Management
