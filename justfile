@@ -16,6 +16,7 @@ setup:
     fi
     @echo "→ Installing node dev dependencies with pnpm..."
     @pnpm install --frozen-lockfile
+    @pnpm run rules:generate
     @echo "→ Installing lefthook git hooks..."
     @lefthook install
     @echo "✓ Setup complete!"
@@ -27,18 +28,26 @@ lint:
 
 # Run specific lefthook command
 lint-hook hook:
-    @lefthook run pre-commit --commands {{hook}} --all-files
+    @lefthook run pre-commit --command {{hook}} --all-files
 
 # Fix common formatting issues
 fix:
-    @lefthook run pre-commit --commands end-of-file-fixer --all-files
-    @lefthook run pre-commit --commands trailing-whitespace --all-files
-    @lefthook run pre-commit --commands mixed-line-ending --all-files
-    @lefthook run pre-commit --commands markdownlint --all-files
+    @lefthook run pre-commit --command end-of-file-fixer --all-files
+    @lefthook run pre-commit --command trailing-whitespace --all-files
+    @lefthook run pre-commit --command mixed-line-ending --all-files
+    @lefthook run pre-commit --command markdownlint --all-files
 
 # Format all files
 format:
-    @lefthook run pre-commit --commands biome-format --all-files
+    @pnpm run format
+
+# Generate AI instructions from the shared rules
+rules:
+    @pnpm run rules:generate
+
+# Check generated AI instructions for drift
+rules-check:
+    @pnpm run rules:check
 
 # Show tool status
 status:

@@ -36,7 +36,10 @@ const { sprintf, vsprintf } = dependency([
 const braces = dependency(["markdownlint-cli2", "micromatch", "braces"]);
 {
   assert.deepEqual(braces.expand("file.{js,{ts,tsx}}"), ["file.js", "file.ts", "file.tsx"]);
-  for (const [open, close] of [["{", "}"], ["(", ")"]]) {
+  for (const [open, close] of [
+    ["{", "}"],
+    ["(", ")"],
+  ]) {
     const pattern = open.repeat(4000) + "a,b" + close.repeat(4000);
     assert.throws(() => braces(pattern), {
       name: "SyntaxError",

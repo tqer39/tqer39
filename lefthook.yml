@@ -10,6 +10,13 @@ pre-commit:
       run: bash tests/workflow-result.sh
     dependency-security-test:
       run: node tests/dependency-security.cjs
+    rulesync-check:
+      run: pnpm run rules:check
+    tooling-test:
+      run: pnpm run test:tooling
+    oxlint:
+      glob: "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"
+      run: pnpm exec oxlint --deny-warnings {staged_files}
     # ── セーフティ系 (pre-commit-hooks 相当) ──
     check-added-large-files:
       exclude:
@@ -62,7 +69,6 @@ pre-commit:
       run: npx --yes --package=renovate -- renovate-config-validator {staged_files}
 
     # ── フォーマッタ系 ──
-    biome-format:
-      glob: "*.json"
-      run: pnpm exec biome format --write {staged_files}
-      stage_fixed: true
+    oxfmt:
+      glob: "*.{json,jsonc,json5,js,cjs,mjs,jsx,ts,cts,mts,tsx}"
+      run: pnpm exec oxfmt --check {staged_files}

@@ -1,248 +1,85 @@
-# CLAUDE.md
+# リポジトリの開発指針
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このリポジトリは、`tqer39` の GitHub プロフィール README を管理します。
+`README.md` は公開プロフィール、`src/icon/` は画像素材、
+`profile-3d-contrib/` は生成されたコントリビューショングラフの保存先です。
 
-## Repository Purpose
+## AI 共通の指示
 
-This is a GitHub profile README repository (username: tqer39). The README.md file is displayed on the GitHub profile page and contains profile information, skills, activity statistics, and visual elements.
+常に日本語で回答してください。
 
-## Getting Started
+- 編集前に、リポジトリの指示と関連コードを読んでください。
+- 無関係なユーザーの変更を保持し、変更範囲を依頼内容に絞ってください。
+- 複雑な作業では、期待する動作と検証条件を明確にし、実装から検証まで完了させてください。
+- バージョンに依存する動作は、現在の一次情報を確認してください。
+  検証済みの事実と推測を区別してください。
+- 既存のコーディング規約に従い、必要なコメントやドキュメントを追加してください。
+- 認証情報や機密情報をコードに含めないでください。
+- 外部コードやライブラリを利用する場合は、ライセンスを確認し、必要に応じて明記してください。
+- AI の提案は利用前に確認し、不適切な内容は修正・削除してください。
+- Copilot の提案を利用した場合は、プルリクエストにその旨を記載してください。
+- 意味のある動作変更には回帰テストを追加してください。
+  実装をなぞるだけのテストは追加しないでください。
+- 最終差分をレビューし、回帰・要件漏れ・不要な変更がないか確認してください。
+  検証結果と残る制約を正確に報告してください。
 
-### Quick Setup (Recommended)
+## セットアップとコマンド
 
-Bootstrap your development environment with a single command:
-
-```bash
-# Install Homebrew and all required tools
-make bootstrap
-
-# After bootstrap completes, setup prek hooks
-just setup
-```
-
-This will:
-
-1. Install Homebrew (if not already installed)
-2. Install all dependencies from `Brewfile` (gh, just, actionlint, biome, prek, shellcheck, yamllint)
-3. Setup prek hooks for automatic code quality checks
-
-### Manual Setup
-
-If you prefer manual installation:
-
-```bash
-# Install Homebrew (if not installed)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install dependencies
-brew bundle install
-
-# Setup prek hooks
-prek install
-```
-
-## Code Quality and Linting
-
-This repository uses **prek** (a faster, Rust-based alternative to pre-commit) to maintain code quality. All commits must pass these checks.
-
-### About prek
-
-- **Performance**: 7-10x faster than pre-commit
-- **Disk space**: Uses only ~50% of the disk space compared to pre-commit
-- **Compatibility**: Fully compatible with existing `.pre-commit-config.yaml` files
-- **Zero dependencies**: Single binary with no Python or runtime dependencies
-
-### Running prek Hooks Locally
+macOS または Linux では、`make bootstrap` で Homebrew と `Brewfile` のツールをインストールします。
+`just setup` で `mise.toml` に指定されたツールと pnpm の依存関係をインストールし、
+AI 向けの指示を生成して Lefthook のフックを設定します。
+Node.js の開発ツールは、各プラットフォームで共通のリポジトリ内 pnpm 依存関係として管理します。
 
 ```bash
-# Run all linters
-just lint
-
-# Run specific hook
-just lint-hook <hook-name>
-
-# Fix common formatting issues
-just fix
-
-# Format all files with Prettier
-just format
+just help              # 利用できるコマンドを表示
+just status            # ツールのインストール状況を確認
+mise run lint          # 全チェックを実行。修正が発生したら失敗し、ステージ状態は保持
+just lint              # 整形の修正を含め、すべての Lefthook チェックを実行
+just lint-hook oxlint  # 指定したフックのみ実行
+just fix               # 空白と Markdown の整形を修正
+just format            # Oxfmt で JSON と JavaScript/TypeScript を整形
+just rules             # AI 向けの指示を生成
+just rules-check       # AI 向けの指示が同期されているか確認
 ```
 
-### Available Linters and Checks
+## 品質チェック
 
-The repository enforces the following via `.pre-commit-config.yaml`:
+- Lefthook（`lefthook.yml`）でローカルのフックと GitHub Actions のチェックを実行します。
+- Oxlint（`.oxlintrc.json`）で CommonJS のテストを含む JavaScript/TypeScript を検証します。
+- Oxfmt（`.oxfmtrc.json`）で JSON、JSONC、JSON5、JavaScript/TypeScript を整形します。
+  Markdown、YAML、画像素材、依存関係のパッチ、pnpm のロックファイルは対象外です。
+- yamllint、actionlint、shellcheck で YAML、ワークフロー、シェルスクリプトを検証します。
+- markdownlint-cli2、textlint、cspell でドキュメントとスペルを検証します。
+- ファイルの整合性を確認するフックで、サイズ、JSON 構文、認証情報、空白を検証します。
+- 回帰テストで、依存関係のパッチ、ワークフローの結果、コントリビューショングラフの更新、
+  AI ルールの同期ずれ、不正な lint・整形入力の検出を検証します。
+- `renovate-config-validator` で Renovate の設定を検証します。
 
-- **File integrity**: Large file detection (max 512KB), JSON/YAML validation, credential detection
-- **biome**: JSON file formatting (config: `biome.json`)
-- **yamllint**: YAML file linting (config: `.yamllint`)
-- **cspell**: Spell checking (config: `cspell.json`)
-- **markdownlint-cli2**: Markdown linting (config: `.markdownlint.json`)
-  - Allows HTML elements: `img`, `details`, `summary`, `hr`, `p`, `style`, `div`
-  - Disables: MD013 (line length), MD024 (duplicate headings), MD030 (list spacing), MD041 (first line heading)
-- **textlint**: Japanese text linting (config: `.textlintrc`)
-  - Rules: `no-dropping-the-ra`, `ja-no-space-between-full-width`
-- **shellcheck**: Shell script linting
-- **prettier**: YAML formatting for GitHub Actions
-- **actionlint**: GitHub Actions workflow validation
-- **renovate-config-validator**: Renovate configuration validation
+`.editorconfig` に従い、UTF-8、LF、スペース2個のインデント、行末の空白なし、
+末尾の改行ありで記述してください。プロフィールの更新時は、`.markdownlint.json` で
+許可された HTML 要素を使用し、必要に応じて `cspell.json` に辞書の単語を追加してください。
+GitHub 固有のウィジェットは、ローカルでは表示されない場合があります。
 
-### Editor Configuration
+## rulesync の運用
 
-The repository uses `.editorconfig` with these settings:
+AI 共通の指示は、正本の `.rulesync/rules/overview.md` を編集してください。
+`rulesync.jsonc` の `rules` 機能で、Claude Code、Codex、Copilot、Devin を対象に指定しています。
+正本の編集後は `pnpm run rules:generate` を実行し、生成ファイルもコミットしてください。
+生成された `CLAUDE.md`、`AGENTS.md`、`.github/copilot-instructions.md` は直接編集しないでください。
+Codex と Devin は `AGENTS.md` を共有します。`pnpm run rules:check` で同期ずれを検出します。
 
-- Charset: UTF-8
-- Line endings: LF
-- Indent: 2 spaces
-- Trim trailing whitespace
-- Insert final newline
+## ワークフローと依存関係
 
-## GitHub Actions Workflows
+- `.github/workflows/lint.yml` でツールと依存関係をインストールし、Lefthook を実行します。
+  `workflow-result` ジョブで lint の結果を確認します。
+- `.github/workflows/profile-3d-contrib.yml` で、毎日18:00 UTC（03:00 JST）と
+  手動実行時に SVG を生成します。`scripts/update-profile-3d-contrib.sh` で
+  同時更新を処理しながら、生成された変更を反映します。
+- その他のワークフローで、ライセンス年を更新し、プルリクエスト作成者を担当者に設定して、
+  ラベルを付与します。
 
-### Automated Workflows
-
-1. **prek** (`.github/workflows/prek.yml`)
-   - Runs on: push to main, all PRs (except `feature/generate-github-profile-3d-contrib`)
-   - Executes all prek hooks with `--show-diff-on-failure`
-   - Uses `j178/prek-action@v1` for faster CI execution
-   - Timeout: 10 minutes
-   - Note: Profile 3D contribution PRs are excluded from checks
-
-2. **profile-3d-contrib** (`.github/workflows/profile-3d-contrib.yml`)
-   - Runs on: Daily schedule (18:00 UTC / 03:00 JST), manual dispatch
-   - Generates 3D contribution graph using `yoshi389111/github-profile-3d-contrib`
-   - Auto-creates PR and merges to main branch
-   - Output location: `profile-3d-contrib/` directory
-
-3. **update-license-year** (`.github/workflows/update-license-year.yml`)
-   - Automatically updates copyright year in files
-
-4. **auto-assign** (`.github/workflows/auto-assign.yml`)
-   - Auto-assigns PR author as assignee
-
-5. **labeler** (`.github/workflows/labeler.yml`)
-   - Auto-applies labels to PRs
-
-## Dependency Management
-
-Renovate is configured via `renovate.json5` using the shared config with auto-merge enabled:
-
-```json5
-{
-  "extends": ["github>tqer39/renovate-config"],
-  "platformAutomerge": true,
-  "automerge": true,
-  "automergeType": "pr"
-}
-```
-
-Renovate will automatically create PRs for dependency updates and merge them when:
-
-- All CI checks pass
-- The PR is approved (if required by branch protection rules)
-
-## Development Guidelines
-
-### From Copilot Instructions
-
-When working in this repository (from `.github/copilot-instructions.md`):
-
-1. **コーディングスタイル (Coding Style)**
-   - Follow existing project coding conventions and formatting
-   - Actively use comments and documentation
-
-2. **セキュリティ (Security)**
-   - Follow security best practices
-   - Never include credentials or sensitive information in code
-
-3. **ライセンスと著作権 (License and Copyright)**
-   - Verify licenses when using external code or libraries
-   - Document license information when necessary
-
-4. **PR・レビュー (PR & Review)**
-   - Always verify content before using AI suggestions
-   - Modify as necessary
-   - Document when AI suggestions are used in PRs
-
-## Key Files
-
-- `README.md`: Main profile page content (contains HTML, images, and GitHub stats widgets)
-- `src/icon/`: Contains icon images used in the profile
-- `profile-3d-contrib/`: Auto-generated 3D contribution graphs
-- `.github/workflows/`: Automated GitHub Actions workflows
-
-## Common Tasks
-
-### Development Workflow
-
-```bash
-# Show all available commands
-just help
-
-# Check tool installation status
-just status
-
-# Run all linters before committing
-just lint
-
-# Fix common formatting issues
-just fix
-
-# Format all files
-just format
-
-# Update Homebrew packages
-just update-brew
-
-# Clean prek cache (if needed)
-just clean
-```
-
-### Updating Profile Content
-
-When editing `README.md`, ensure:
-
-- HTML elements are in the allowed list (see markdownlint config)
-- Spell check passes (add custom words to `cspell.json` if needed)
-- All prek hooks pass before committing
-
-### Adding Custom Dictionary Words
-
-To add words to the spell checker, edit `cspell.json`:
-
-```json
-{
-  "words": [
-    "newword1",
-    "newword2"
-  ]
-}
-```
-
-### Testing Changes Locally
-
-Before pushing changes:
-
-```bash
-# Run all quality checks
-just lint
-
-# Or run prek directly
-prek run --all-files
-
-# View the README locally (in browser or Markdown viewer)
-# Note: GitHub-specific widgets won't render locally
-```
-
-### Migrating from pre-commit to prek
-
-If you previously used pre-commit:
-
-```bash
-# Uninstall pre-commit hooks
-pre-commit uninstall
-
-# Install prek hooks
-just setup
-```
-
-The existing `.pre-commit-config.yaml` file works without modification.
+`renovate.json5` は `github>tqer39/renovate-config` を継承します。
+共通のスケジュール、自動マージ方針、ラベル、セキュリティ設定は共通設定で管理し、
+このリポジトリには固有の例外だけを記述してください。
+開発ツールの更新時は、`pnpm-workspace.yaml`、`pnpm-lock.yaml`、`patches/` にある
+セキュリティ上の上書き設定と依存関係のパッチを保持してください。
