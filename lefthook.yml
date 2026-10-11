@@ -4,6 +4,8 @@ pre-commit:
   # File-writing hooks must finish before other hooks read the same files.
   parallel: false
   commands:
+    lint-fixes-test:
+      run: node tests/lint-fixes.cjs
     mise-tasks-test:
       run: node tests/mise-tasks.cjs
     profile-3d-contrib-test:
@@ -56,7 +58,7 @@ pre-commit:
       run: actionlint {staged_files}
     shellcheck:
       glob: "*.sh"
-      run: shellcheck {staged_files}
+      run: shellcheck -x {staged_files}
     markdownlint:
       glob: "*.{md,markdown}"
       run: pnpm exec markdownlint-cli2 --fix {staged_files}

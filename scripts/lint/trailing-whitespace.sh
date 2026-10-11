@@ -2,10 +2,9 @@
 # Remove trailing whitespace from text files. Modifies in place.
 set -euo pipefail
 
+# shellcheck source=scripts/lint/text-file.sh
+source "$(dirname "${BASH_SOURCE[0]}")/text-file.sh"
+
 for f in "$@"; do
-  [[ -f "$f" ]] || continue
-  grep -Iq . "$f" || continue
-  sed -E 's/[[:space:]]+$//' "$f" >"$f.tmp"
-  cat "$f.tmp" >"$f"
-  rm -f "$f.tmp"
+  rewrite_text_file "$f" sed -E 's/[[:space:]]+$//'
 done
