@@ -3,6 +3,8 @@
 pre-commit:
   parallel: true
   commands:
+    profile-3d-contrib-test:
+      run: node tests/profile-3d-contrib.cjs
     workflow-result-test:
       run: bash tests/workflow-result.sh
     dependency-security-test:
