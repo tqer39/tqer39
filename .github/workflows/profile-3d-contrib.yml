@@ -24,9 +24,7 @@ jobs:
         with:
           app-id: ${{ secrets.MAINTENANCE_APP_ID }}
           private-key: ${{ secrets.MAINTENANCE_APP_PRIVATE_KEY }}
-          repositories: ${{ github.event.repository.name }}
           permission-contents: write
-          owner: ${{ github.repository_owner }}
 
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
