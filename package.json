@@ -4,7 +4,7 @@
   "description": "Development tool dependencies for tqer39 profile (run via lefthook).",
   "packageManager": "pnpm@12.12.0",
   "devDependencies": {
-    "cspell": "10.3.6",
+    "cspell": "10.4.0",
     "markdownlint-cli2": "0.23.3",
     "oxfmt": "0.72.0",
     "oxlint": "1.87.0",
