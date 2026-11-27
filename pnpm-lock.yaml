@@ -199,8 +199,8 @@ importers:
         specifier: 12.0.2
         version: 12.0.2
       textlint-rule-preset-smarthr:
-        specifier: 1.38.2
-        version: 1.38.2
+        specifier: 1.38.3
+        version: 1.38.3
 
 packages:
 
@@ -1129,6 +1129,9 @@ packages:
 
   argparse@3.0.2:
     resolution: {integrity: sha512-mFdDM6WqWKraGLsVb+C9CahPnzTXOefAOLq3jYcca2YZ8bEWpr++Tzj+zSaKW9+X9L5uSxcm1AZ3Y6aZJ09OhQ==}
+
+  argparse@3.0.4:
+    resolution: {integrity: sha512-fwWK3Zq22l4XJJjx5mcBHGikIk+hJqO+32dPm0Jur7+rtG5x1scOjSfdT9ZKeWHPpsya/l0HHK4tDImBkTrtvA==}
 
   array-buffer-byte-length@1.0.2:
     resolution: {integrity: sha512-LHE+8BuR7RYGDKvnrmcuSq3tDcKv9OFEXQt/HpbZhY7V6h0zlUXutnAD82GiFx9rdieCMjkvtcsPqBwgUl1Iiw==}
@@ -2124,6 +2127,10 @@ packages:
     resolution: {integrity: sha512-m+aqu+LwO1O6sIopafj8HUVl5aawITwZQe/yHpMCKjaWBaA/d07B/QdMb3529REftiU+RMMHL3Vlsw3hON7vWg==}
     hasBin: true
 
+  js-yaml@5.5.0:
+    resolution: {integrity: sha512-paNr4LFIFPjeeSmwNYdrb8FafLLG/Cr2Af3GjbsHJ5CxIjH4r0c2emlmRdAtpPAieP1gRVzk6buBbVP5gBMGAg==}
+    hasBin: true
+
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
 
@@ -3055,8 +3062,8 @@ packages:
   textlint-rule-preset-jtf-style@3.0.3:
     resolution: {integrity: sha512-NTvqjg3oMTGjSDoH6MnYu+DDWW6cEghA66Lb8N0bheTphAj99aaG10HGhwTfDbaH2P6NfPQvRP5ISxiXCT9zdg==}
 
-  textlint-rule-preset-smarthr@1.38.2:
-    resolution: {integrity: sha512-fJ4XAkwv9Z1zWJgit2LNpSf408R/BEz3pq5PwgtQzP3auqzgyy04VYCXx3GtYdLO2wo8TT7GMAbB6MWYt0lP2Q==}
+  textlint-rule-preset-smarthr@1.38.3:
+    resolution: {integrity: sha512-3VCSf2WKnbfxP0PgTHP8hSIGJ3tNOPWRSetjQxUwevjF7exFV6+53+I9BhEb2vbUWDiDvXREfpfNQ8djz9IRNg==}
 
   textlint-rule-prh@5.3.0:
     resolution: {integrity: sha512-gdod+lL1SWUDyXs1ICEwvQawaSshT3mvPGufBIjF2R5WFPdKQDMsiuzsjkLm+aF+9d97dA6pFsiyC8gSW7mSgg==}
@@ -4250,6 +4257,8 @@ snapshots:
 
   argparse@3.0.2: {}
 
+  argparse@3.0.4: {}
+
   array-buffer-byte-length@1.0.2:
     dependencies:
       call-bound: 1.0.4
@@ -5368,6 +5377,10 @@ snapshots:
   js-yaml@5.4.2:
     dependencies:
       argparse: 2.0.1
+
+  js-yaml@5.5.0:
+    dependencies:
+      argparse: 3.0.4
 
   json-schema-traverse@1.0.0: {}
 
@@ -6727,12 +6740,12 @@ snapshots:
       textlint-rule-helper: 2.5.0
       textlint-rule-prh: 6.1.0
 
-  textlint-rule-preset-smarthr@1.38.2:
+  textlint-rule-preset-smarthr@1.38.3:
     dependencies:
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
       '@textlint-rule/textlint-rule-pattern': 2.0.2
       '@textlint/module-interop': 15.8.0
-      js-yaml: 4.3.2
+      js-yaml: 5.5.0
       textlint-rule-ja-hiragana-daimeishi: 1.0.0
       textlint-rule-ja-hiragana-hojodoushi: 1.1.0
       textlint-rule-ja-keishikimeishi: 1.0.5
